@@ -69,7 +69,8 @@ public class SelectApp {
                     selectService.viewMembersById(id);
                     break;
                 case 3:
-                    selectService.viewMembersByName();
+                    String name = searchMemberName();
+                    selectService.viewMembersByName(name);
                     break;
                 case 4:
                     selectService.viewMembersByWarnCount();
@@ -93,5 +94,14 @@ public class SelectApp {
         String id = sc.nextLine();
 
         return id;
+    }
+
+    private static String searchMemberName() {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("검색할 회원의 이름를 입력하세요.");
+        String name = sc.nextLine();
+
+        return name;
     }
 }

@@ -1,6 +1,6 @@
 package com.hgcastle.service;
 
-import com.hgcastle.common.MemberDTO;
+import com.hgcastle.dto.MemberDTO;
 import com.hgcastle.mapper.MemberMapperSelect;
 import org.apache.ibatis.session.SqlSession;
 
@@ -38,19 +38,15 @@ public class SelectService {
         }
     }
 
-    public void viewMembersByName() {
+    public void viewMembersByName(String name) {
 
-        SqlSession sqlSession = getSqlSession();
-
-        mapper = sqlSession.getMapper(MemberMapperSelect.class);
-
-        List<MemberDTO> memberList = mapper.viewMembersByName();
-
-        for(MemberDTO memberDTO :memberList) {
-            System.out.println(memberDTO);
+        try (SqlSession sqlSession = getSqlSession()) {
+            mapper = sqlSession.getMapper(MemberMapperSelect.class);
+            List<MemberDTO> memberList = mapper.viewMembersByName(name);
+            for (MemberDTO memberDTO : memberList) {
+                System.out.println(memberDTO);
+            }
         }
-
-        sqlSession.close();
     }
 
     public void viewMembersByWarnCount() {

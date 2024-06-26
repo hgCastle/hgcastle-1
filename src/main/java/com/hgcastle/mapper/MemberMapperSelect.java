@@ -1,6 +1,6 @@
 package com.hgcastle.mapper;
 
-import com.hgcastle.common.MemberDTO;
+import com.hgcastle.dto.MemberDTO;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public interface MemberMapperSelect {
 
     List<MemberDTO> viewMembersById(String id);
 
-    List<MemberDTO> viewMembersByName();
+    List<MemberDTO> viewMembersByName(String name);
 
     List<MemberDTO> viewMembersByWarnCount();
 
