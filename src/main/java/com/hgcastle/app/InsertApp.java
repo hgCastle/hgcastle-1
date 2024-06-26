@@ -9,8 +9,10 @@ import java.util.Scanner;
 public class InsertApp {
 
     public static void main(String[] args) {
+        InsertService insertService = new InsertService();
+
         System.out.println("============= 회원 등록 기능 어플리케이션 =============");
-        InsertService.insertMember(inputNewMember());
+        insertService.insertMember(inputNewMember());
     }
 
     private static MemberDTO inputNewMember() {
