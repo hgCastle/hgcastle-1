@@ -6,36 +6,24 @@
     <resultMap id="memberSelectAppResult" type="com.hgcastle.dto.MemberDTO">
         <id property="no" column="member_no"/>
         <result property="id" column="member_id"/>
-        <result property="password" column="member_password"/>
         <result property="name" column="member_name"/>
-        <result property="nickname" column="member_nickname"/>
         <result property="hobby" column="member_hobby"/>
         <result property="phone" column="member_phone"/>
         <result property="email" column="member_email"/>
         <result property="rrn" column="member_rrn"/>
-        <result property="address" column="member_address"/>
         <result property="entDate" column="member_entDate"/>
-        <result property="warnCount" column="member_warnCount"/>
-        <result property="banDate" column="member_banDate"/>
-        <result property="quitDate" column="member_quitDate"/>
      </resultMap>
     
     <select id="viewAllMembers" resultMap="memberSelectAppResult">
         select
         member_no,
         member_id,
-        member_password,
         member_name,
-        member_nickname,
         member_hobby,
         member_phone,
         member_email,
         member_rrn,
-        member_address,
-        member_entDate,
-        member_warnCount,
-        member_banDate,
-        member_quitDate
+        member_entDate
         from tbl_member
     </select>
 
@@ -43,77 +31,79 @@
         select
         member_no,
         member_id,
-        member_password,
         member_name,
-        member_nickname,
         member_hobby,
         member_phone,
         member_email,
         member_rrn,
-        member_address,
-        member_entDate,
-        member_warnCount,
-        member_banDate,
-        member_quitDate
+        member_entDate
         from tbl_member
-        where member_id = #{ id }
+        where member_id like concat('%', #{ id }, '%')
     </select>
 
     <select id="viewMembersByName" resultMap="memberSelectAppResult">
         select
         member_no,
         member_id,
-        member_password,
         member_name,
-        member_nickname,
         member_hobby,
         member_phone,
         member_email,
         member_rrn,
-        member_address,
-        member_entDate,
-        member_warnCount,
-        member_banDate,
-        member_quitDate
+        member_entDate
         from tbl_member
         where member_name like concat('%', #{name}, '%')
     </select>
 
-    <select id="viewMembersByWarnCount" resultMap="memberSelectAppResult">
+    <resultMap id="memberSelectWarnResult" type="com.hgcastle.dto.MemberDTO">
+        <id property="no" column="member_no"/>
+        <result property="id" column="member_id"/>
+        <result property="name" column="member_name"/>
+        <result property="hobby" column="member_hobby"/>
+        <result property="phone" column="member_phone"/>
+        <result property="email" column="member_email"/>
+        <result property="rrn" column="member_rrn"/>
+        <result property="entDate" column="member_entDate"/>
+        <result property="warnCount" column="member_warnCount"/>
+    </resultMap>
+
+    <select id="viewMembersByWarnCount" resultMap="memberSelectWarnResult">
         select
         member_no,
         member_id,
-        member_password,
         member_name,
-        member_nickname,
         member_hobby,
         member_phone,
         member_email,
         member_rrn,
-        member_address,
         member_entDate,
-        member_warnCount,
-        member_banDate,
-        member_quitDate
+        member_warnCount
         from tbl_member
         where member_warnCount >= 1
     </select>
 
-    <select id="viewMembersByQuitDate" resultMap="memberSelectAppResult">
+    <resultMap id="memberSelectQuitResult" type="com.hgcastle.dto.MemberDTO">
+        <id property="no" column="member_no"/>
+        <result property="id" column="member_id"/>
+        <result property="name" column="member_name"/>
+        <result property="hobby" column="member_hobby"/>
+        <result property="phone" column="member_phone"/>
+        <result property="email" column="member_email"/>
+        <result property="rrn" column="member_rrn"/>
+        <result property="entDate" column="member_entDate"/>
+        <result property="quitDate" column="member_quitDate"/>
+    </resultMap>
+
+    <select id="viewMembersByQuitDate" resultMap="memberSelectQuitResult">
         select
         member_no,
         member_id,
-        member_password,
         member_name,
-        member_nickname,
         member_hobby,
         member_phone,
         member_email,
         member_rrn,
-        member_address,
         member_entDate,
-        member_warnCount,
-        member_banDate,
         member_quitDate
         from tbl_member
         where member_quitDate is not null

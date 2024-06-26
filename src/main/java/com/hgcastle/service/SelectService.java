@@ -65,12 +65,16 @@ public class SelectService {
 
         List<MemberDTO> memberList = mapper.viewMembersByWarnCount();
 
-        for(MemberDTO memberDTO :memberList) {
-            System.out.println(memberDTO);
+        if (memberList.isEmpty()) {
+            System.out.println("경고누적횟수가 1 이상인 회원이 없습니다.");
+        } else {
+            for (MemberDTO memberDTO : memberList) {
+                System.out.println(memberDTO);
+            }
+        }
+            sqlSession.close();
         }
 
-        sqlSession.close();
-    }
 
     public void viewMembersByQuitDate() {
 
@@ -80,10 +84,13 @@ public class SelectService {
 
         List<MemberDTO> memberList = mapper.viewMembersByQuitDate();
 
-        for(MemberDTO memberDTO :memberList) {
-            System.out.println(memberDTO);
+        if (memberList.isEmpty()) {
+            System.out.println("현재 탈퇴한 회원이 없습니다.");
+        } else {
+            for (MemberDTO memberDTO : memberList) {
+                System.out.println(memberDTO);
+            }
         }
-
         sqlSession.close();
     }
 }
