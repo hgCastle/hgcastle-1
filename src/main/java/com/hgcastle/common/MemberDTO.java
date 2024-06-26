@@ -2,6 +2,7 @@ package com.hgcastle.common;
 
 import lombok.*;
 
+import java.lang.reflect.Member;
 import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
