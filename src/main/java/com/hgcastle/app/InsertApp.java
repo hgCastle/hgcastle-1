@@ -1,6 +1,7 @@
 package com.hgcastle.app;
 
-import com.hgcastle.common.MemberDTO;
+
+import com.hgcastle.dto.MemberDTO;
 import com.hgcastle.service.InsertService;
 
 import java.time.LocalDate;

@@ -1,6 +1,6 @@
 package com.hgcastle.service;
 
-import com.hgcastle.common.MemberDTO;
+import com.hgcastle.dto.MemberDTO;
 import com.hgcastle.mapper.MemberInsertMapper;
 import org.apache.ibatis.session.SqlSession;
 
