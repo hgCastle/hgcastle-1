@@ -1,4 +1,4 @@
-package com.hgcastle.common;
+package com.hgcastle.dto;
 
 import lombok.*;
 
