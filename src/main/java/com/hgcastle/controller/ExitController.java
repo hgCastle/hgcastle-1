@@ -1,18 +1,20 @@
 package com.hgcastle.controller;
 
 
+import com.hgcastle.dto.MemberDTO;
 import com.hgcastle.service.ExitService;
 
 import java.util.Map;
 
 public class ExitController {
 
+    private final PrintResult printResult;
     private final ExitService exitService;
-    public final PrintResult printResult;
+
 
     public ExitController() {
-        exitService = new ExitService();
         printResult = new PrintResult();
+        exitService = new ExitService();
 
     }
 
@@ -20,13 +22,14 @@ public class ExitController {
 
         String id = parameter.get("id");
 
-        exitService.selectId(id);
+        MemberDTO member = exitService.selectId("id");
 
         if (id != null){
-            printResult.printId(id);
+            printResult.printMember(member);
         } else {
-            printResult.printId(id);
+            printResult.printErrorMessage("selectOne");
         }
+
     }
 
 }
