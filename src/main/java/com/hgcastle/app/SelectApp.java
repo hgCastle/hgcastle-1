@@ -4,6 +4,7 @@ import com.hgcastle.service.SelectService;
 
 import java.util.Scanner;
 
+
 public class SelectApp {
 
     public static void main(String[] args) {
@@ -64,7 +65,8 @@ public class SelectApp {
                     selectService.viewAllMembers();
                     break;
                 case 2:
-                    selectService.viewMembersById();
+                    String id = searchMemberId();
+                    selectService.viewMembersById(id);
                     break;
                 case 3:
                     selectService.viewMembersByName();
@@ -82,5 +84,14 @@ public class SelectApp {
 
             }
         } while (true);
+    }
+
+    private static String searchMemberId() {
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("검색할 회원의 ID를 입력하세요.");
+        String id = sc.nextLine();
+
+        return id;
     }
 }

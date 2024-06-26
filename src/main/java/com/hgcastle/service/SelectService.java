@@ -1,7 +1,7 @@
 package com.hgcastle.service;
 
 import com.hgcastle.common.MemberDTO;
-import com.hgcastle.mapper.MemberMapper;
+import com.hgcastle.mapper.MemberMapperSelect;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
@@ -10,13 +10,13 @@ import static com.hgcastle.common.Template.getSqlSession;
 
 public class SelectService {
 
-    private MemberMapper mapper;
+    private MemberMapperSelect mapper;
 
     public void viewAllMembers() {
 
         SqlSession sqlSession = getSqlSession();
 
-        mapper = sqlSession.getMapper(MemberMapper.class);
+        mapper = sqlSession.getMapper(MemberMapperSelect.class);
 
         List<MemberDTO> memberList = mapper.viewAllMembers();
 
@@ -27,20 +27,28 @@ public class SelectService {
 
     }
 
-    public void viewMembersById() {
+    public void viewMembersById(String id) {
 
-        SqlSession sqlSession = getSqlSession();
-
-        mapper = sqlSession.getMapper(MemberMapper.class);
-
-        sqlSession.close();
+        try (SqlSession sqlSession = getSqlSession()) {
+            mapper = sqlSession.getMapper(MemberMapperSelect.class);
+            List<MemberDTO> memberList = mapper.viewMembersById(id);
+            for (MemberDTO memberDTO : memberList) {
+                System.out.println(memberDTO);
+            }
+        }
     }
 
     public void viewMembersByName() {
 
         SqlSession sqlSession = getSqlSession();
 
-        mapper = sqlSession.getMapper(MemberMapper.class);
+        mapper = sqlSession.getMapper(MemberMapperSelect.class);
+
+        List<MemberDTO> memberList = mapper.viewMembersByName();
+
+        for(MemberDTO memberDTO :memberList) {
+            System.out.println(memberDTO);
+        }
 
         sqlSession.close();
     }
@@ -49,7 +57,13 @@ public class SelectService {
 
         SqlSession sqlSession = getSqlSession();
 
-        mapper = sqlSession.getMapper(MemberMapper.class);
+        mapper = sqlSession.getMapper(MemberMapperSelect.class);
+
+        List<MemberDTO> memberList = mapper.viewMembersByWarnCount();
+
+        for(MemberDTO memberDTO :memberList) {
+            System.out.println(memberDTO);
+        }
 
         sqlSession.close();
     }
@@ -58,7 +72,13 @@ public class SelectService {
 
         SqlSession sqlSession = getSqlSession();
 
-        mapper = sqlSession.getMapper(MemberMapper.class);
+        mapper = sqlSession.getMapper(MemberMapperSelect.class);
+
+        List<MemberDTO> memberList = mapper.viewMembersByQuitDate();
+
+        for(MemberDTO memberDTO :memberList) {
+            System.out.println(memberDTO);
+        }
 
         sqlSession.close();
     }
