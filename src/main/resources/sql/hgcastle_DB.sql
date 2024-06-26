@@ -1,5 +1,3 @@
-create database if not exists choisamo_db;
-grant all privileges on choisamo_db.* to 'ohgiraffers'@'%';
 DROP TABLE IF EXISTS `tbl_member` CASCADE;
 
 CREATE TABLE `tbl_member`
