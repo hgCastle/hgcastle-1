@@ -32,8 +32,12 @@ public class SelectService {
         try (SqlSession sqlSession = getSqlSession()) {
             mapper = sqlSession.getMapper(MemberMapperSelect.class);
             List<MemberDTO> memberList = mapper.viewMembersById(id);
-            for (MemberDTO memberDTO : memberList) {
-                System.out.println(memberDTO);
+            if (memberList.isEmpty()) {
+                System.out.println("해당 ID를 가진 회원이 없습니다.");
+            } else {
+                for (MemberDTO memberDTO : memberList) {
+                    System.out.println(memberDTO);
+                }
             }
         }
     }
@@ -43,8 +47,12 @@ public class SelectService {
         try (SqlSession sqlSession = getSqlSession()) {
             mapper = sqlSession.getMapper(MemberMapperSelect.class);
             List<MemberDTO> memberList = mapper.viewMembersByName(name);
-            for (MemberDTO memberDTO : memberList) {
-                System.out.println(memberDTO);
+            if (memberList.isEmpty()) {
+                System.out.println("해당 이름을 가진 회원이 없습니다.");
+            } else {
+                for (MemberDTO memberDTO : memberList) {
+                    System.out.println(memberDTO);
+                }
             }
         }
     }
