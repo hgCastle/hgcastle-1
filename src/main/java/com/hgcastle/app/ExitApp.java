@@ -2,31 +2,32 @@ package com.hgcastle.app;
 
 import com.hgcastle.common.MemberDTO;
 
-import java.lang.reflect.Member;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class ExitApp {
 
-
-    public static void main(String[] args) {
+    public static String main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
         MemberDTO member = new MemberDTO();
 
-        do {
-            System.out.println("탈퇴할 회원 아이디를 입력하세요 : ");
-            String id = sc.nextLine();
-            sc.nextLine();
+        System.out.println("탈퇴할 아이디를 입력하세요 : ");
+        String id = sc.nextLine();
 
-            member.modifyid(inputmodifyid()); break;
 
-        } while (true);
-    }
+        Map<String, MemberDTO> members = new HashMap<>();
 
-    private static Member inputmodifyid() {
+        if (id.equals(id)) {
+            System.out.println("해당 탈퇴 회원이 맞습니까? (Y/N)");
+            String answer = sc.nextLine();
 
-        Scanner sc = new Scanner(System.in);
-
-    }
-
+            if (answer.equals("Y")) {
+                System.out.println("탈퇴가 왼료 되었습니다.");
+            } else if (answer.equals("N")
+            }
+        }
 }
+
+

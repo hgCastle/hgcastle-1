@@ -7,4 +7,4 @@ public class ExitService {
     private MemberMapper mapper;
 
 
-}
+    }
