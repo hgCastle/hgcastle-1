@@ -13,7 +13,9 @@ public class InsertApp {
         InsertService insertService = new InsertService();
 
         System.out.println("============= 회원 등록 기능 어플리케이션 =============");
-        insertService.insertMember(inputNewMember());
+        while (true) {
+            insertService.insertMember(inputNewMember());
+        }
     }
 
     private static MemberDTO inputNewMember() {
@@ -37,14 +39,15 @@ public class InsertApp {
         String hobby = sc.nextLine();
 
         System.out.print("등록할 회원의 전화번호 ('-'없이 작성) : ");
-        String phone = sc.nextLine();
+        String phone = inputPhone();
+
         System.out.print("등록할 회원의 주민등록번호 앞 6자리 : ");
         String frontRRN = sc.nextLine();
         System.out.print("등록할 회원의 주민등록번호 뒤 7자리 : ");
         String backRRN = sc.nextLine();
         String rrn = frontRRN + '-' + backRRN;
 
-        System.out.print("등록할 회원의 거주지 : ");
+        System.out.print("등록할 회원의 거주지(시, 군, 구 단위만 작성) : ");
         String address = sc.nextLine();
 
         newMember.setId(id);
@@ -61,5 +64,17 @@ public class InsertApp {
         return newMember;
     }
 
+    private static String inputPhone() {
+        Scanner sc = new Scanner(System.in);
 
+        do {
+            System.out.print("등록할 회원의 전화번호 ('-'없이 작성) : ");
+            String phone = sc.nextLine();
+            if (phone.length() == 11) {
+                return phone;
+            } else {
+                System.out.println("잘못 입력하셨습니다.");
+            }
+        } while (true);
+    }
 }
