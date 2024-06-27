@@ -1,25 +1,28 @@
 package com.hgcastle.app;
 
-import com.hgcastle.dto.MemberDTO;
-import com.hgcastle.service.InsertService;
+import com.hgcastle.controller.InsertController;
+import com.hgcastle.view.InsertResult;
 
-import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class InsertApp {
 
-    public static void main(String[] args) {
-        InsertService insertService = new InsertService();
+    static InsertResult insertResult = new InsertResult();
 
-        System.out.println("============= 회원 등록 기능 어플리케이션 =============");
+    public static void main(String[] args) {
+        InsertController insertController = new InsertController();
+
         do {
-            insertService.insertMember(inputNewMember());
+            System.out.println("\n============= 회원 등록 기능 어플리케이션 =============");
+            insertController.insertMember(inputNewMember());
         } while (true);
     }
 
-    private static MemberDTO inputNewMember() {
+    private static Map<String, String> inputNewMember() {
         Scanner sc = new Scanner(System.in);
-        MemberDTO newMember = new MemberDTO();
+        Map<String, String> parameter = new HashMap<>();
 
         // 아이디 입력 메소드
         String id = inputID();
@@ -41,30 +44,41 @@ public class InsertApp {
         String phone = inputPhone();
 
         // 주민번호 앞자리 입력 메소드
-        String frontRRN = inputFrontRRN();
+        String frontRrn = inputFrontRrn();
         // 주민번호 뒷자리 입력 메소드
-        String backRRN = inputBackRRN();
-        String rrn = frontRRN + '-' + backRRN;
+        String backRrn = inputBackRrn();
+        String rrn = frontRrn + '-' + backRrn;
 
-        System.out.print("등록할 회원의 거주지(시, 군, 구 단위만 작성) : ");
+        System.out.print("\n등록할 회원의 거주지(시, 군, 구 단위만 작성) : ");
         String address = sc.nextLine();
 
-        newMember.setId(id);
-        newMember.setPassword(password);
-        newMember.setName(name);
-        newMember.setNickname(nickname);
-        newMember.setHobby(hobby);
-        newMember.setPhone(phone);
-        newMember.setEmail(email);
-        newMember.setRrn(rrn);
-        newMember.setAddress(address);
-        newMember.setEntDate(LocalDate.now());
+        System.out.println("");
+        System.out.println("====== 입력하신 정보 ======");
+        System.out.println("아이디 : " + id);
+        System.out.println("비밀번호 : " + password);
+        System.out.println("닉네임 : " + nickname);
+        System.out.println("휴대폰 번호 : " + phone);
+        System.out.println("주민등록번호 : " + rrn);
+        System.out.println("거주지 : " + address);
 
-        return newMember;
+        if (isitRight()) {
+            parameter.put("id", id);
+            parameter.put("password", password);
+            parameter.put("name", name);
+            parameter.put("nickname", nickname);
+            parameter.put("hobby", hobby);
+            parameter.put("phone", phone);
+            parameter.put("rrn", rrn);
+            parameter.put("address", address);
+            return parameter;
+        } else {
+            return null;
+        }
     }
 
     private static String inputID() {
         Scanner sc = new Scanner(System.in);
+        String obj = "아이디";
 
         do {
             System.out.println();
@@ -75,25 +89,23 @@ public class InsertApp {
             System.out.print("등록할 아이디 : ");
             String id = sc.nextLine();
             if (id.isEmpty()) {
-                System.err.print("아이디는 [필수항목]입니다!");
+                insertResult.printErrorMessage("empty", obj + '는');
                 System.out.println();
-            } else if (id.length() < 5) {
-                System.err.print("아이디의 길이가 너무 짧습니다!");
+            } else if (!id.matches("[a-z0-9]*")) {
+                insertResult.printErrorMessage("wrongFormat", null);
                 System.out.println();
-            } else if (id.length() > 12) {
-                System.err.print("아이디의 길이가 너무 깁니다!");
+            } else if (id.length() < 5 || id.length() > 12) {
+                insertResult.printErrorMessage("wrongLength", null);
                 System.out.println();
-            } else if (id.matches("[a-z0-9]{5,12}")) {
-                return id;
             } else {
-                System.err.print("조건에 맞게 입력해주세요!");
-                System.out.println();
+                return id;
             }
         } while (true);
     }
 
     private static String inputPassword() {
         Scanner sc = new Scanner(System.in);
+        String obj = "비밀번호";
 
         do {
             System.out.println();
@@ -105,25 +117,23 @@ public class InsertApp {
             System.out.print("등록할 비밀번호 : ");
             String password = sc.nextLine();
             if (password.isEmpty()) {
-                System.err.print("비밀번호는 [필수항목]입니다!");
+                insertResult.printErrorMessage("empty", obj + '는');
                 System.out.println();
-            } else if (password.length() < 5) {
-                System.err.print("비밀번호의 길이가 너무 짧습니다!");
+            } else if (!password.matches("[-~!@#$%^&*_+=`|:;\\\"',.?/a-zA-Z0-9]*")) {
+                insertResult.printErrorMessage("wrongFormat", null);
                 System.out.println();
-            } else if (password.length() > 20) {
-                System.err.print("비밀번호의 길이가 너무 깁니다!");
+            } else if (password.length() < 5 || password.length() > 20) {
+                insertResult.printErrorMessage("wrongLength", null);
                 System.out.println();
-            } else if (password.matches("[-~!@#$%^&*_+=`|:;\\\"',.?/a-zA-Z0-9]{5,20}")) {
-                return password;
             } else {
-                System.err.print("조건에 맞게 입력해주세요!");
-                System.out.println();
+                return password;
             }
         } while (true);
     }
 
     private static String inputNickname() {
         Scanner sc = new Scanner(System.in);
+        String obj = "별명";
 
         do {
             System.out.println();
@@ -134,16 +144,15 @@ public class InsertApp {
             System.out.print("등록할 별명 : ");
             String nickname = sc.nextLine();
             if (nickname.isEmpty()) {
-                System.err.print("별명은 [필수항목]입니다!");
+                insertResult.printErrorMessage("empty", obj + '은');
                 System.out.println();
-            } else if (nickname.length() > 6) {
-                System.err.print("별명의 길이가 너무 깁니다!");
-                System.out.println();
-            } else if (nickname.matches("[a-zA-z0-9가-힣]{1,6}")) {
+            } else if (!nickname.matches("[a-zA-z0-9가-힣]*")) {
                 return nickname;
-            } else {
-                System.err.print("조건에 맞게 입력해주세요!");
+            } else if (nickname.length() > 6) {
+                insertResult.printErrorMessage("wrongLength", null);
                 System.out.println();
+            } else {
+                return nickname;
             }
         } while (true);
     }
@@ -153,73 +162,92 @@ public class InsertApp {
 
         do {
             System.out.println();
-            System.out.print("등록할 회원의 휴대폰 번호 ('-'없이 작성) : ");
+            System.out.print("등록할 회원의 휴대폰 번호 8자리('-'없이 '010' 이후 8자리만 작성) : 010");
             String phone = sc.nextLine();
             if (phone.isEmpty()) {
-                System.err.print("휴대폰 번호는 [필수항목]입니다!");
+                insertResult.printErrorMessage("empty", "휴대폰 번호는");
                 System.out.println();
-            } else if (phone.charAt(0) != '0') {
-                System.err.print("'0'이 아닌 숫자로 시작할 수 없습니다!");
+            } else if (!phone.matches("[0-9]*")) {
+                insertResult.printErrorMessage("wrongFormat", null);
                 System.out.println();
-            } else if (phone.length() != 11) {
-                System.err.print("11자리 숫자로 입력해주세요!");
+            } else if (phone.length() != 8) {
+                insertResult.printErrorMessage("wrongLength", null);
                 System.out.println();
-            } else if (phone.matches("[0-9]{11}")) {
-                return phone;
             } else {
-                System.err.print("잘못 입력하셨습니다!");
-                System.out.println();
+                return phone;
             }
         } while (true);
     }
 
-    private static String inputFrontRRN() {
+    private static String inputFrontRrn() {
         Scanner sc = new Scanner(System.in);
 
         do {
             System.out.println();
             System.out.print("등록할 회원의 주민등록번호 앞 6자리 : ");
-            String frontRRN = sc.nextLine();
-            if (frontRRN.isEmpty()) {
-                System.err.print("주민등록번호는 [필수항목]입니다!");
+            String frontRrn = sc.nextLine();
+            if (frontRrn.isEmpty()) {
+                insertResult.printErrorMessage("empty", "주민등록번호는");
                 System.out.println();
-            } else if (1 > Integer.parseInt(frontRRN.substring(2, 4)) || Integer.parseInt(frontRRN.substring(2, 4)) > 12
-                    || 1 > Integer.parseInt(frontRRN.substring(4)) || Integer.parseInt(frontRRN.substring(4)) > 31) {
-                System.err.print("생년월일을 잘못 입력하셨습니다!");
+            } else if (!frontRrn.matches("[0-9]*")) {
+                insertResult.printErrorMessage("wrongFormat", null);
                 System.out.println();
-            } else if (frontRRN.length() != 6) {
-                System.err.print("6자리 숫자로 입력해주세요!");
+            } else if (1 > Integer.parseInt(frontRrn.substring(2, 4)) || Integer.parseInt(frontRrn.substring(2, 4)) > 12
+                    || 1 > Integer.parseInt(frontRrn.substring(4)) || Integer.parseInt(frontRrn.substring(4)) > 31) {
+                insertResult.printErrorMessage("nonExistentDate", null);
                 System.out.println();
-            } else if (frontRRN.matches("[0-9]{6}")) {
-                return frontRRN;
+            } else if (frontRrn.length() != 6) {
+                insertResult.printErrorMessage("wrongLength", null);
+                System.out.println();
             } else {
-                System.err.print("잘못 입력하셨습니다!");
-                System.out.println();
+                return frontRrn;
             }
         } while (true);
     }
 
-    private static String inputBackRRN() {
+    private static String inputBackRrn() {
         Scanner sc = new Scanner(System.in);
 
         do {
             System.out.println();
             System.out.print("등록할 회원의 주민등록번호 뒤 7자리 : ");
-            String backRRN = sc.nextLine();
-            if (backRRN.isEmpty()) {
-                System.err.print("주민등록번호는 [필수항목]입니다.");
+            String backRrn = sc.nextLine();
+            if (backRrn.isEmpty()) {
+                insertResult.printErrorMessage("empty", "주민등록번호는");
                 System.out.println();
-            } else if (backRRN.charAt(0) != '1' && backRRN.charAt(0) != '2'
-                    && backRRN.charAt(0) != '3' && backRRN.charAt(0) != '4') {
-                System.err.print("'1, 2, 3, 4'외의 숫자로 시작할 수 없습니다!");
+            } else if (!backRrn.matches("^[0-9]*")) {
+                insertResult.printErrorMessage("wrongFormat", null);
                 System.out.println();
-            } else if (backRRN.length() != 7) {
-                System.err.print("7자리 숫자로 입력해주세요!");
+            } else if (backRrn.charAt(0) != '1' && backRrn.charAt(0) != '2'
+                    && backRrn.charAt(0) != '3' && backRrn.charAt(0) != '4') {
+                insertResult.printErrorMessage("backRrnStartWithout1to4", null);
                 System.out.println();
-            } else if (backRRN.matches("[0-9]{7}")) {
-                return backRRN;
+            } else if (backRrn.length() != 7) {
+                insertResult.printErrorMessage("wrongLength", null);
+                System.out.println();
             } else {
-                System.err.print("잘못 입력하셨습니다!");
+                return backRrn;
+            }
+        } while (true);
+    }
+
+    private static boolean isitRight() {
+        Scanner sc = new Scanner(System.in);
+
+        do {
+            System.out.println("이대로 등록을 진행하시겠습니까?");
+            System.out.print("1.예(Y)      2.아니오(N) : ");
+            String yesOrNo = sc.nextLine();
+            if (yesOrNo.equals("예") || yesOrNo.equals("Y") || yesOrNo.equals("y") || yesOrNo.equals("1")
+                    || yesOrNo.equals("네") || yesOrNo.equals("ㅇ") || yesOrNo.equals("ㅇㅇ") || yesOrNo.equals("ㄱㄱ")
+                    || yesOrNo.equals("ㄱ") || yesOrNo.equals("응") || yesOrNo.equals("어") || yesOrNo.equals("웅")) {
+                return true;
+            } else if (yesOrNo.equals("아니오") || yesOrNo.equals("N") || yesOrNo.equals("n") || yesOrNo.equals("2")
+                    || yesOrNo.equals("아니요") || yesOrNo.equals("ㄴ") || yesOrNo.equals("ㄴㄴ") || yesOrNo.equals("놉")
+                    || yesOrNo.equals("노") || yesOrNo.equals("시러")) {
+                return false;
+            } else {
+                insertResult.printErrorMessage("youAreWrong", null);
                 System.out.println();
             }
         } while (true);
