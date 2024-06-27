@@ -27,34 +27,30 @@ public class SelectService {
 
     }
 
-    public void viewMembersById(String id) {
+    public MemberDTO viewMembersById(String id) {
 
-        try (SqlSession sqlSession = getSqlSession()) {
-            mapper = sqlSession.getMapper(MemberMapperSelect.class);
-            List<MemberDTO> memberList = mapper.viewMembersById(id);
-            if (memberList.isEmpty()) {
-                System.out.println("해당 ID를 가진 회원이 없습니다.");
-            } else {
-                for (MemberDTO memberDTO : memberList) {
-                    System.out.println(memberDTO);
-                }
-            }
-        }
+        SqlSession sqlSession = getSqlSession();
+
+        mapper = sqlSession.getMapper(MemberMapperSelect.class);
+
+        MemberDTO member = mapper.viewMembersById(id);
+
+        sqlSession.close();
+
+        return member;
     }
 
-    public void viewMembersByName(String name) {
+    public MemberDTO viewMembersByName(String name) {
 
-        try (SqlSession sqlSession = getSqlSession()) {
-            mapper = sqlSession.getMapper(MemberMapperSelect.class);
-            List<MemberDTO> memberList = mapper.viewMembersByName(name);
-            if (memberList.isEmpty()) {
-                System.out.println("해당 이름을 가진 회원이 없습니다.");
-            } else {
-                for (MemberDTO memberDTO : memberList) {
-                    System.out.println(memberDTO);
-                }
-            }
-        }
+        SqlSession sqlSession = getSqlSession();
+
+        mapper = sqlSession.getMapper(MemberMapperSelect.class);
+
+        MemberDTO member = mapper.viewMembersByName(name);
+
+        sqlSession.close();
+
+        return member;
     }
 
     public void viewMembersByWarnCount() {

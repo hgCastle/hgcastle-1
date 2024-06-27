@@ -1,7 +1,10 @@
 package com.hgcastle.app;
 
+import com.hgcastle.controller.SelectController;
 import com.hgcastle.service.SelectService;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 
@@ -10,7 +13,7 @@ public class SelectApp {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-
+        SelectController selectController = new SelectController();
         SelectService selectService = new SelectService();
 
         do {
@@ -50,6 +53,7 @@ public class SelectApp {
     private static void selectMemberSubMenu() {
         Scanner sc = new Scanner(System.in);
         SelectService selectService = new SelectService();
+        SelectController selectController = new SelectController();
         do {
             System.out.println("=========== 회원 조회 서브 메뉴 ===========");
             System.out.println("1. 회원 전체 조회");
@@ -65,12 +69,10 @@ public class SelectApp {
                     selectService.viewAllMembers();
                     break;
                 case 2:
-                    String id = searchMemberId();
-                    selectService.viewMembersById(id);
+                    selectController.viewMembersById(searchMemberId());
                     break;
                 case 3:
-                    String name = searchMemberName();
-                    selectService.viewMembersByName(name);
+                    selectController.viewMembersByName(searchMemberName());
                     break;
                 case 4:
                     selectService.viewMembersByWarnCount();
@@ -87,21 +89,28 @@ public class SelectApp {
         } while (true);
     }
 
-    private static String searchMemberId() {
+    private static Map<String, String> searchMemberId() {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("검색할 회원의 ID를 입력하세요.");
         String id = sc.nextLine();
 
-        return id;
+        Map<String, String> parameter = new HashMap<>();
+        parameter.put("id", id);
+
+        return parameter;
     }
 
-    private static String searchMemberName() {
+
+    private static Map<String, String> searchMemberName() {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("검색할 회원의 이름를 입력하세요.");
         String name = sc.nextLine();
 
-        return name;
+        Map<String, String> parameter = new HashMap<>();
+        parameter.put("name", name);
+
+        return parameter;
     }
 }
