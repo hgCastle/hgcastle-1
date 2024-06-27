@@ -3,13 +3,13 @@ package com.hgcastle.app;
 import com.hgcastle.controller.InsertController;
 import com.hgcastle.view.InsertResult;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class InsertApp {
 
-    static InsertResult insertResult = new InsertResult();
+    private static InsertResult insertResult = new InsertResult();
+
+
 
     public static void main(String[] args) {
         InsertController insertController = new InsertController();
@@ -21,11 +21,13 @@ public class InsertApp {
     }
 
     private static Map<String, String> inputNewMember() {
+        InsertController insertController = new InsertController();
+
         Scanner sc = new Scanner(System.in);
         Map<String, String> parameter = new HashMap<>();
 
         // 아이디 입력 메소드
-        String id = inputID();
+        String id = insertController.inputID();
         String email = id + "@naver.com";
 
         // 비밀번호 입력 메소드

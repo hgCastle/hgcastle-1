@@ -14,6 +14,9 @@ public class InsertResult {
 
     public void printErrorMessage(String errorCode, String errorObj) {
         switch (errorCode) {
+            case "unknownError" :
+                System.err.print("알수없는 에러가 발생했습니다. 다시 시도해주세요!");
+                System.out.println();
             case "insert":
                 System.err.println("""
                         !!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -45,6 +48,9 @@ public class InsertResult {
                 System.err.print("'1, 2, 3, 4'외의 숫자로 시작할 수 없습니다!");
                 System.out.println();
                 break;
+            case "duplicate" :
+                System.err.print("이미 사용중인 " + errorObj + "입니다.");
+                System.out.println();
         }
     }
 }

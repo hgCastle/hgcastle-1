@@ -17,6 +17,10 @@ public class InsertController {
         insertResult = new InsertResult();
     }
 
+    public String inputID() {
+        return insertService.inputId();
+    }
+
     public void insertMember(Map<String, String> parameter) {
 
         if (parameter != null) {
@@ -50,8 +54,6 @@ public class InsertController {
             } else {
                 insertResult.printErrorMessage("insert", null);
             }
-        } else {
-            return;
         }
     }
 }
