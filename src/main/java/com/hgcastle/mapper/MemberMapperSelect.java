@@ -2,7 +2,6 @@ package com.hgcastle.mapper;
 
 import com.hgcastle.dto.MemberDTO;
 
-import java.lang.reflect.Member;
 import java.util.List;
 
 public interface MemberMapperSelect {
