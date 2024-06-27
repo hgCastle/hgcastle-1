@@ -9,5 +9,6 @@
         member_quitDate = curDate()
         where
         member_id = #{ id }
+        and member_quitdate is not null
     </update>
 </mapper>

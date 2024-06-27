@@ -19,7 +19,7 @@ public class DeleteService {
 
         int result = mapper.deleteMembersById(memberDTO);
 
-        if(result > 0) {
+        if (result > 0) {
             sqlSession.commit();
         } else {
             sqlSession.rollback();
@@ -29,4 +29,5 @@ public class DeleteService {
 
         return result > 0 ? true : false;
     }
+
 }

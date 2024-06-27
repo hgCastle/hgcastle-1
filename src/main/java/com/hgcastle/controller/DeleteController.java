@@ -4,7 +4,6 @@ import com.hgcastle.dto.MemberDTO;
 import com.hgcastle.service.DeleteService;
 import com.hgcastle.view.DeleteResult;
 
-import java.util.List;
 import java.util.Map;
 
 public class DeleteController {
@@ -20,7 +19,7 @@ public class DeleteController {
 
     public void deleteMembersById(Map<String, String> parameter) {
 
-        String id = parameter.get("code");
+        String id = parameter.get("id");
         MemberDTO memberDTO = new MemberDTO();
         memberDTO.setId(id);
         if(deleteService.deleteMembersById(memberDTO)) {
@@ -28,6 +27,8 @@ public class DeleteController {
         } else {
             deleteResult.printErrorMessage("deleteMemberFail");
         }
+
+
     }
 
 }
