@@ -18,11 +18,11 @@ public class ExitController {
 
     }
 
-    public void selectId(Map<String, String> parameter){
+    public void selectMemberId(Map<String, String> parameter){
 
         String id = parameter.get("id");
 
-        MemberDTO member = exitService.selectId("id");
+        MemberDTO member = exitService.selectMemberId("id");
 
         if (id != null){
             printResult.printMember(member);

@@ -4,5 +4,5 @@ import com.hgcastle.dto.MemberDTO;
 
 public interface MemberExitMapper {
 
-    MemberDTO selectId(String id);
+    MemberDTO selectMemberId(String id);
 }

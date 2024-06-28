@@ -13,14 +13,17 @@ public class PrintResult {
 
         String successMessage = "";
         switch (delete){
-            case "delete" :
+            case "delete" : successMessage = "회원 삭제를 성공했습니다."; break;
         }
+
+        System.out.println(successMessage);
     }
 
     public void printErrorMessage(String erroCode) {
+
         String errorMessage = "";
         switch (erroCode){
-            case "selectOne" : errorMessage = "회원 조회를 실패했습니다."; break;
+            case "delete" : errorMessage = "회원 삭제를 성공했습니다."; break;
         }
 
         System.out.println(errorMessage);

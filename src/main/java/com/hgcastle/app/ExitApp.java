@@ -18,7 +18,7 @@ public class ExitApp {
             String id = sc.nextLine();
 
             switch (id) {
-                case "1": exitController.selectId(inputId());break;
+                case "1": exitController.selectMemberId(inputId());break;
             }
         } while (true);
 
