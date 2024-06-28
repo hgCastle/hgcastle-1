@@ -1,5 +1,6 @@
 package com.hgcastle.mapper;
 
-public interface MemberMapper {
+public interface MemberDeleteMapper {
+
     int deleteMember(String id);
 }
