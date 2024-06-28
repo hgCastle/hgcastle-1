@@ -2,5 +2,5 @@ package com.hgcastle.mapper;
 
 public interface MemberDeleteMapper {
 
-    int deleteMember(String id);
+    int deleteMemberId(String id);
 }

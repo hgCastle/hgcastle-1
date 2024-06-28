@@ -20,7 +20,26 @@
         <result property="quitDate" column="member_quitDate"/>
     </resultMap>
 
-    <delete id="deleteMember" parameterType="_int">
+    <select id="selectMemberId" resultMap="memberResultMap">
+        select
+        member_id,
+        member_password,
+        member_no,
+        member_name,
+        member_nickname,
+        member_hobby,
+        member_phone,
+        member_email,
+        member_rrn,
+        member_address,
+        member_entDate,
+        member_warnCount,
+        member_quitDate
+        from tbl_member
+        where member_id =#{id}
+    </select>
+
+    <delete id="deleteMemberId" parameterType="String">
         delete
         from tbl_member
         where member_id = #{id}

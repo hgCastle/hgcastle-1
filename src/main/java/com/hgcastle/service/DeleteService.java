@@ -9,12 +9,12 @@ public class DeleteService {
 
     private MemberDeleteMapper memberDeleteMapper;
 
-    public boolean deleteMember(String id) {
+    public boolean deleteMemberId(String id) {
         SqlSession sqlSession = getSqlSession();
 
         memberDeleteMapper = sqlSession.getMapper(MemberDeleteMapper.class);
 
-        int result = memberDeleteMapper.deleteMember(id);
+        int result = memberDeleteMapper.deleteMemberId(id);
 
         if (result > 0){
             sqlSession.commit();
