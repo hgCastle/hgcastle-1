@@ -1,6 +1,5 @@
 package com.hgcastle.app;
 
-import com.hgcastle.controller.InsertController;
 import com.hgcastle.view.InsertResult;
 
 import java.util.*;
