@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hgcastle.mapper.MemberMapperSelect">
+    <resultMap id="memberSelectAppResult" type="com.hgcastle.dto.MemberDTO">
+        <id property="no" column="member_no"/>
+        <result property="id" column="member_id"/>
+        <result property="name" column="member_name"/>
+        <result property="hobby" column="member_hobby"/>
+        <result property="phone" column="member_phone"/>
+        <result property="email" column="member_email"/>
+        <result property="rrn" column="member_rrn"/>
+        <result property="entDate" column="member_entDate"/>
+     </resultMap>
+    
+    <select id="viewAllMembers" resultMap="memberSelectAppResult">
+        select
+        member_no,
+        member_id,
+        member_name,
+        member_hobby,
+        member_phone,
+        member_email,
+        member_rrn,
+        member_entDate
+        from tbl_member
+    </select>
+
+    <select id="viewMembersById" resultMap="memberSelectAppResult">
+        select
+        member_no,
+        member_id,
+        member_name,
+        member_hobby,
+        member_phone,
+        member_email,
+        member_rrn,
+        member_entDate
+        from tbl_member
+        where member_id like concat('%', #{ id }, '%')
+    </select>
+
+    <select id="viewMembersByName" resultMap="memberSelectAppResult">
+        select
+        member_no,
+        member_id,
+        member_name,
+        member_hobby,
+        member_phone,
+        member_email,
+        member_rrn,
+        member_entDate
+        from tbl_member
+        where member_name like concat('%', #{name}, '%')
+    </select>
+
+    <resultMap id="memberSelectWarnResult" type="com.hgcastle.dto.MemberDTO">
+        <id property="no" column="member_no"/>
+        <result property="id" column="member_id"/>
+        <result property="name" column="member_name"/>
+        <result property="hobby" column="member_hobby"/>
+        <result property="phone" column="member_phone"/>
+        <result property="email" column="member_email"/>
+        <result property="rrn" column="member_rrn"/>
+        <result property="entDate" column="member_entDate"/>
+        <result property="warnCount" column="member_warnCount"/>
+    </resultMap>
+
+    <select id="viewMembersByWarnCount" resultMap="memberSelectWarnResult">
+        select
+        member_no,
+        member_id,
+        member_name,
+        member_hobby,
+        member_phone,
+        member_email,
+        member_rrn,
+        member_entDate,
+        member_warnCount
+        from tbl_member
+        where member_warnCount >= 1
+    </select>
+
+    <resultMap id="memberSelectQuitResult" type="com.hgcastle.dto.MemberDTO">
+        <id property="no" column="member_no"/>
+        <result property="id" column="member_id"/>
+        <result property="name" column="member_name"/>
+        <result property="hobby" column="member_hobby"/>
+        <result property="phone" column="member_phone"/>
+        <result property="email" column="member_email"/>
+        <result property="rrn" column="member_rrn"/>
+        <result property="entDate" column="member_entDate"/>
+        <result property="quitDate" column="member_quitDate"/>
+    </resultMap>
+
+    <select id="viewMembersByQuitDate" resultMap="memberSelectQuitResult">
+        select
+        member_no,
+        member_id,
+        member_name,
+        member_hobby,
+        member_phone,
+        member_email,
+        member_rrn,
+        member_entDate,
+        member_quitDate
+        from tbl_member
+        where member_quitDate is not null
+    </select>
+
+
+
+</mapper>
