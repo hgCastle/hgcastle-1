@@ -17,7 +17,8 @@ public class ExitApp {
 
         do {
             System.out.println("============회원 탈퇴 시스템==============");
-            exitController.selectMemberId(inputMemberId()); break;
+            exitController.selectMemberId(inputMemberId());
+            break;
 
         } while (true);
 
@@ -33,12 +34,12 @@ public class ExitApp {
         String id = sc.nextLine();
         parameter.put("id", id);
 
-            return parameter;
+        return parameter;
 
     }
 
 
-    }
+}
 
 
 
