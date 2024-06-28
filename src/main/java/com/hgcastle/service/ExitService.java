@@ -1,7 +1,6 @@
 package com.hgcastle.service;
 
 
-import com.hgcastle.dao.ExitDAO;
 import com.hgcastle.dto.MemberDTO;
 import org.apache.ibatis.session.SqlSession;
 
