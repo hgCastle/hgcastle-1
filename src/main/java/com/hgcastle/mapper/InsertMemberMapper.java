@@ -4,7 +4,7 @@ import com.hgcastle.dto.MemberDTO;
 
 import java.util.List;
 
-public interface MemberInsertMapper {
+public interface InsertMemberMapper {
 
     int insertMember(MemberDTO newMember);
     List<MemberDTO> selectAllMember();
