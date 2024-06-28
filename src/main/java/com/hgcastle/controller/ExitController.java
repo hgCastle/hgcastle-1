@@ -33,17 +33,4 @@ public class ExitController {
         }
     }
 
-    public boolean isRight() {
-        Scanner sc = new Scanner(System.in);
-
-        do {
-            System.out.println("해당 Id가 탈퇴할 회원이 맞습니까? ");
-            System.out.print("Y/N");
-            String answer = sc.nextLine();
-
-            if (answer.equals("Y"))
-                return true;
-
-        }
-    }
 }

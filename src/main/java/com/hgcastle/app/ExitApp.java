@@ -33,25 +33,10 @@ public class ExitApp {
         String id = sc.nextLine();
         parameter.put("id", id);
 
-        if (exitController.isRight()) {
-            parameter.put("id", id);
-
             return parameter;
-        } else {
-            return null;
-        }
+
     }
 
-    private static boolean isRight(){
-        Scanner sc = new Scanner(System.in);
-
-        do {
-            System.out.println("탈퇴할 회원 아이디가 맞습니까? ");
-            System.out.print("1.예(Y)      2.아니오(N) : ");
-            String answer = sc.nextLine();
-
-        } while (true);
-    }
 
     }
 
