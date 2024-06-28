@@ -1,13 +1,10 @@
 package com.hgcastle.app;
 
 import com.hgcastle.controller.InsertController;
-import com.hgcastle.view.InsertResult;
 
 import java.util.*;
 
 public class InsertApp {
-
-    private static InsertResult insertResult = new InsertResult();
 
     public static void main(String[] args) {
         InsertController insertController = new InsertController();
@@ -26,7 +23,6 @@ public class InsertApp {
 
         // 아이디 입력 메소드
         String id = insertController.inputID();
-        String email = id + "@naver.com";
 
         // 비밀번호 입력 메소드
         String password = insertController.inputPassword();
