@@ -4,7 +4,7 @@ import com.hgcastle.dto.MemberDTO;
 
 import java.util.List;
 
-public interface MemberMapperSelect {
+public interface SelectMemberMapper {
 
     List<MemberDTO> viewAllMembers();
 
