@@ -1,15 +1,11 @@
 package com.hgcastle.view;
 
+import com.hgcastle.dto.MemberDTO;
+
 public class ExitResult {
 
-    public void printSuccessMessage(String successCode) {
-        String successMessage = "";
-
-        switch (successCode) {
-            case "exitMemberSuccess" : successMessage = "회원 탈퇴에 성공했습니다";
-                break;
-        }
-        System.out.println(successMessage);
+    public void printMemberId(MemberDTO id){
+        System.out.println(id);
     }
 
     public void printErrorMessage(String errorCode) {

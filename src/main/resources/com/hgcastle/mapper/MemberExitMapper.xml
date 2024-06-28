@@ -3,12 +3,39 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hgcastle.mapper.MemberExitMapper">
-    <update id="exitMembersById" parameterType="com.hgcastle.dto.MemberDTO">
-        update tbl_member
-        set
-        member_quitDate = curDate()
-        where
-        member_id = #{ id }
-        and member_quitDate is not null
-    </update>
+    <resultMap id="memberResultMap" type="com.hgcastle.dto.MemberDTO">
+        <id property="id" column="member_id"/>
+        <result property="password" column="member_password"/>
+        <result property="no" column="member_no"/>
+        <result property="name" column="member_name"/>
+        <result property="nickname" column="member_nickname"/>
+        <result property="hobby" column="member_hobby"/>
+        <result property="phone" column="member_phone"/>
+        <result property="email" column="member_email"/>
+        <result property="rrn" column="member_rrn"/>
+        <result property="address" column="member_address"/>
+        <result property="enDate" column="member_enDate"/>
+        <result property="warnCount" column="member_warnCount"/>
+        <result property="banDate" column="member_banDate"/>
+        <result property="quitDate" column="member_quitDate"/>
+    </resultMap>
+
+    <select id="selectMemberId" resultMap="memberResultMap">
+        select
+        member_id,
+        member_password,
+        member_no,
+        member_name,
+        member_nickname,
+        member_hobby,
+        member_phone,
+        member_email,
+        member_rrn,
+        member_address,
+        member_entDate,
+        member_warnCount,
+        member_quitDate
+        from tbl_member
+        where member_id =#{id}
+    </select>
 </mapper>

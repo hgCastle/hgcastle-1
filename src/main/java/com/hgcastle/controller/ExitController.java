@@ -6,6 +6,7 @@ import com.hgcastle.service.ExitService;
 import com.hgcastle.view.ExitResult;
 
 import java.util.Map;
+import java.util.Scanner;
 
 public class ExitController {
 
@@ -16,6 +17,7 @@ public class ExitController {
 
         exitService = new ExitService();
         exitResult = new ExitResult();
+
     }
 
     public void selectMemberId(Map<String, String> parameter) {
@@ -25,9 +27,20 @@ public class ExitController {
         MemberDTO member = exitService.selectMemberId(id);
 
         if (member != null) {
-            printResult.printMember(member);
+            exitResult.printMemberId(member);
         } else {
-            printResult.printErrorMessage("selectOne");
+            exitResult.printErrorMessage("selectOne");
+        }
+    }
+
+    public boolean isRight() {
+        Scanner sc = new Scanner(System.in);
+
+        do {
+            System.out.println("해당 Id가 탈퇴할 회원이 맞습니까? ");
+            System.out.print("Y/N");
+            String an
+
         }
     }
 }
