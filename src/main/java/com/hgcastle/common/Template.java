@@ -1,6 +1,6 @@
 package com.hgcastle.common;
 
-import com.hgcastle.mapper.MemberMapperSelect;
+import com.hgcastle.mapper.MemberMapper;
 import org.apache.ibatis.datasource.pooled.PooledDataSource;
 import org.apache.ibatis.mapping.Environment;
 import org.apache.ibatis.session.Configuration;
@@ -24,7 +24,7 @@ public class Template {
                     new JdbcTransactionFactory(),
                     new PooledDataSource(DRIVER, URL, USER, PASSWORD));
             Configuration configuration = new Configuration(environment);
-            configuration.addMapper(MemberMapperSelect.class);
+            configuration.addMapper(MemberMapper.class);
             sqlSessionFactory = new SqlSessionFactoryBuilder().build(configuration);
         }
         return sqlSessionFactory.openSession(false);
