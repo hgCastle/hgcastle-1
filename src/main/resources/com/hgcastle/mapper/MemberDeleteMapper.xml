@@ -20,7 +20,7 @@
         <result property="quitDate" column="member_quitDate"/>
     </resultMap>
 
-    <delete id="deleteMemberId" parameterType="_int">
+    <delete id="deleteMemberId" parameterType="String">
         delete
         from tbl_member
         where member_id = #{id}

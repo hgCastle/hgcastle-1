@@ -7,8 +7,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class DeleteApp {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) {;
         DeleteController deleteController = new DeleteController();
 
         do {
@@ -20,7 +19,6 @@ public class DeleteApp {
     }
 
     private static Map<String, String> inputMemberId() {
-        DeleteController deleteController = new DeleteController();
 
         Scanner sc = new Scanner(System.in);
         Map<String, String> parameter = new HashMap<>();
