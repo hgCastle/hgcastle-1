@@ -17,7 +17,6 @@ public class SelectApp {
         SelectService selectService = new SelectService();
 
         do {
-
                 System.out.println("=========== 취미 공유 카페 회원 관리 프로그램 ===========");
                 System.out.println("1. 회원 등록");
                 System.out.println("2. 회원 탈퇴");
