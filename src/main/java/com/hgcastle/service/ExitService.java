@@ -1,28 +1,32 @@
 package com.hgcastle.service;
 
+
+import com.hgcastle.dao.ExitDAO;
 import com.hgcastle.dto.MemberDTO;
-import com.hgcastle.mapper.MemberExitMapper;
 import org.apache.ibatis.session.SqlSession;
+
 
 import static com.hgcastle.common.Template.getSqlSession;
 
 public class ExitService {
 
-    private MemberExitMapper memberExitMapper;
+    private final ExitDAO exitDAO;
 
-    public MemberDTO selectMemberId(String id) {
+    public ExitService(){
+        exitDAO = new ExitDAO();
+
+    }
+
+    public MemberDTO selectId(String id) {
 
         SqlSession sqlSession = getSqlSession();
 
-        memberExitMapper = sqlSession.getMapper(MemberExitMapper.class);
-
-        MemberDTO member = memberExitMapper.selectMemberId(id);
+        MemberDTO member = exitDAO.selectId(sqlSession,id);
 
         sqlSession.close();
 
         return member;
     }
-
 
 }
 

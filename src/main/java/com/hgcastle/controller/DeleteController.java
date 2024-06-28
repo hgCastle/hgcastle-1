@@ -15,15 +15,11 @@ public class DeleteController {
         printResult = new PrintResult();
     }
 
-    public void deleteMember(Map<String, String> parameter){
+    public void deleteMember(Map<String,String> parameter){
 
-        int id = Integer.parseInt(parameter.get("id"));
+        String id = parameter.get("id");
 
-        if (deleteService.deleteMember(String.valueOf(id))){
-            printResult.printSuccessMessage("delete");
-        } else {
-            printResult.printErrorMessage("delete");
-        }
-
-        }
+        MemberDTO member = deleteService.deleteMember("id");
     }
+
+}
