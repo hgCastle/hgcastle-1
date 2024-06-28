@@ -14,6 +14,11 @@ public class MemberResult {
         }
     }
 
+    public void printMemberDto(MemberDTO member) {
+        System.out.println();
+        System.out.println(member);
+    }
+
     public void printSuccessMessage(String successCode) {
         switch (successCode) {
             case "insert":
@@ -34,6 +39,11 @@ public class MemberResult {
                         !!! 작업 수행을 실패했습니다 !!!
                         !!!!!!!!!!!!!!!!!!!!!!!!!!!!
                         """);
+                System.out.println();
+                break;
+
+            case "none" :
+                System.err.print("존재하지 않는 정보입니다!");
                 System.out.println();
                 break;
 

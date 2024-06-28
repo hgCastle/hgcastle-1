@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 public class Application {
+
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -129,8 +130,10 @@ public class Application {
                     con.selectAllMember();
                     break;
                 case "2":
+                    con.selectMemberById(searchById());
                     break;
                 case "3":
+//                    con.selectMemberByName(searchByName());
                     break;
                 case "4":
                     break;
@@ -141,4 +144,15 @@ public class Application {
             }
         } while (true);
     }
+
+    private static String searchById() {
+
+        MemberController con = new MemberController();
+        String id = con.searchById();
+        return id;
+    }
+
+//    private static String searchByName() {
+//
+//    }
 }

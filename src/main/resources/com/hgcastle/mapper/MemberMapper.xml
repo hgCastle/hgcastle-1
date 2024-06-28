@@ -27,6 +27,12 @@
         order by member_no
     </select>
 
+    <select id="selectMemberById" resultMap="memberResultMap">
+        select *
+        from tbl_member
+        where member_id = #{id}
+    </select>
+
     <insert id="insertMember" parameterType="com.hgcastle.dto.MemberDTO">
         insert into tbl_member(
         member_id,

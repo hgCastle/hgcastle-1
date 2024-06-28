@@ -315,6 +315,41 @@ public class MemberController {
             result.printMenuDtoList(memberList);
         } else {
             result.printErrorMessage("fail");
+            System.out.println();
+        }
+    }
+
+    public String searchById() {
+
+        Scanner sc = new Scanner(System.in);
+
+        do {
+            System.out.println();
+            System.out.print("검색할 아이디를 입력하세요 : ");
+            String id = sc.nextLine();
+            if (id.isBlank()) {
+                result.printErrorMessage("essential");
+                System.out.println();
+            } else {
+                if (service.isIdDuplicate(id)) {
+                    return id;
+                } else {
+                    result.printErrorMessage("none");
+                    System.out.println();
+                }
+            }
+        } while (true);
+    }
+
+    public void selectMemberById(String id) {
+
+        MemberDTO member = service.selectMemberById(id);
+
+        if (member != null) {
+            result.printMemberDto(member);
+        } else {
+            result.printErrorMessage("none");
+            System.out.println();
         }
     }
 }
