@@ -1,7 +1,6 @@
 package com.hgcastle.service;
 
 import com.hgcastle.dto.MemberDTO;
-import com.hgcastle.mapper.InsertMemberMapper;
 import com.hgcastle.mapper.MemberMapper;
 import org.apache.ibatis.session.SqlSession;
 
@@ -32,10 +31,6 @@ public class MemberService {
 
     public boolean isIdDuplicate(String id) {
 
-        SqlSession sqlSession = getSqlSession();
-
-        mapper = sqlSession.getMapper(MemberMapper.class);
-
         List<MemberDTO> memberList = mapper.selectAllMember();
         List<String> idList = memberList.stream().map(MemberDTO::getId).toList();
 
@@ -47,10 +42,6 @@ public class MemberService {
     }
 
     public boolean isNicknameDuplicate(String nickname) {
-
-        SqlSession sqlSession = getSqlSession();
-
-        mapper = sqlSession.getMapper(MemberMapper.class);
 
         List<MemberDTO> memberList = mapper.selectAllMember();
         List<String> nicknameList = memberList.stream().map(MemberDTO::getNickname).toList();
@@ -64,10 +55,6 @@ public class MemberService {
 
     public boolean isPhoneDuplicate(String phone) {
 
-        SqlSession sqlSession = getSqlSession();
-
-        mapper = sqlSession.getMapper(MemberMapper.class);
-
         List<MemberDTO> memberList = mapper.selectAllMember();
         List<String> phoneList = memberList.stream().map(MemberDTO::getPhone).toList();
 
@@ -80,10 +67,6 @@ public class MemberService {
 
     public boolean isRrnDuplicate(String rrn) {
 
-        SqlSession sqlSession = getSqlSession();
-
-        mapper = sqlSession.getMapper(MemberMapper.class);
-
         List<MemberDTO> memberList = mapper.selectAllMember();
         List<String> rrnList = memberList.stream().map(MemberDTO::getRrn).toList();
 
@@ -92,5 +75,18 @@ public class MemberService {
         } else {
             return false;
         }
+    }
+
+    public List<MemberDTO> selectAllMember() {
+
+        SqlSession sqlSession = getSqlSession();
+
+        mapper = sqlSession.getMapper(MemberMapper.class);
+
+        List<MemberDTO> memberList = mapper.selectAllMember();
+
+        sqlSession.close();
+
+        return memberList;
     }
 }

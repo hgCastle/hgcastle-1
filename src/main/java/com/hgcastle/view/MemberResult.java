@@ -1,6 +1,18 @@
 package com.hgcastle.view;
 
+import com.hgcastle.dto.MemberDTO;
+
+import java.util.List;
+
 public class MemberResult {
+
+    public void printMenuDtoList(List<MemberDTO> memberList) {
+        System.out.println();
+        System.out.println("███████████████████████████ 회원 목록 ████████████████████████████");
+        for (MemberDTO member : memberList) {
+            System.out.println(member);
+        }
+    }
 
     public void printSuccessMessage(String successCode) {
         switch (successCode) {
@@ -16,7 +28,7 @@ public class MemberResult {
 
         switch (errorCode) {
 
-            case "insert":
+            case "fail":
                 System.err.println("""
                         !!!!!!!!!!!!!!!!!!!!!!!!!!!!
                         !!! 작업 수행을 실패했습니다 !!!

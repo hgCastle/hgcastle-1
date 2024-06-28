@@ -5,6 +5,7 @@ import com.hgcastle.service.MemberService;
 import com.hgcastle.view.MemberResult;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -304,5 +305,16 @@ public class MemberController {
                 System.out.println();
             }
         } while (true);
+    }
+
+    public void selectAllMember() {
+
+        List<MemberDTO> memberList = service.selectAllMember();
+
+        if (memberList != null) {
+            result.printMenuDtoList(memberList);
+        } else {
+            result.printErrorMessage("fail");
+        }
     }
 }

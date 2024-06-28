@@ -21,6 +21,7 @@ public class Application {
                 ╚═╝  ╚═╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝╚══════╝""");
         do {
             System.out.print("""
+                    
                     ████████████████████████ 회원 관리 프로그램 █████████████████████████
                     ████████████████████ 현재 등록 기능만 이용 가능! █████████████████████
                     1) 회원 등록
@@ -36,6 +37,7 @@ public class Application {
                     con.insertMember(inputNewMember());
                     break;
                 case "2":
+                    selectSubMenu();
                     break;
                 case "3":
                     break;
@@ -104,5 +106,39 @@ public class Application {
         } else {
             return null;
         }
+    }
+
+    private static void selectSubMenu() {
+
+        Scanner sc = new Scanner(System.in);
+        MemberController con = new MemberController();
+
+        do {
+            System.out.println();
+            System.out.println("████████████████████████ 회원 조회 기능목록 █████████████████████████");
+            System.out.println("1) 회원 전체 조회");
+            System.out.println("2) 아이디로 특정 회원 조회");
+            System.out.println("3) 이름으로 특정 회원 조회");
+            System.out.println("4) 경고 누적이 있는 회원만 조회");
+            System.out.println("5) 탈퇴한 회원만 조회");
+            System.out.println("0) 돌아가기");
+            System.out.print("사용할 기능 번호를 입력하세요 : ");
+            String choice = sc.nextLine();
+            switch (choice) {
+                case "1":
+                    con.selectAllMember();
+                    break;
+                case "2":
+                    break;
+                case "3":
+                    break;
+                case "4":
+                    break;
+                case "5":
+                    break;
+                case "0":
+                    return;
+            }
+        } while (true);
     }
 }
