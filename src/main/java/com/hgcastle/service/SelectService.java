@@ -1,7 +1,7 @@
 package com.hgcastle.service;
 
 import com.hgcastle.dto.MemberDTO;
-import com.hgcastle.mapper.MemberMapperSelect;
+import com.hgcastle.mapper.SelectMemberMapper;
 import org.apache.ibatis.session.SqlSession;
 
 import java.util.List;
@@ -10,13 +10,13 @@ import static com.hgcastle.common.Template.getSqlSession;
 
 public class SelectService {
 
-    private MemberMapperSelect mapper;
+    private SelectMemberMapper mapper;
 
     public void viewAllMembers() {
 
         SqlSession sqlSession = getSqlSession();
 
-        mapper = sqlSession.getMapper(MemberMapperSelect.class);
+        mapper = sqlSession.getMapper(SelectMemberMapper.class);
 
         List<MemberDTO> memberList = mapper.viewAllMembers();
 
@@ -31,7 +31,7 @@ public class SelectService {
 
         SqlSession sqlSession = getSqlSession();
 
-        mapper = sqlSession.getMapper(MemberMapperSelect.class);
+        mapper = sqlSession.getMapper(SelectMemberMapper.class);
 
         MemberDTO member = mapper.viewMembersById(id);
 
@@ -44,7 +44,7 @@ public class SelectService {
 
         SqlSession sqlSession = getSqlSession();
 
-        mapper = sqlSession.getMapper(MemberMapperSelect.class);
+        mapper = sqlSession.getMapper(SelectMemberMapper.class);
 
         MemberDTO member = mapper.viewMembersByName(name);
 
@@ -57,7 +57,7 @@ public class SelectService {
 
         SqlSession sqlSession = getSqlSession();
 
-        mapper = sqlSession.getMapper(MemberMapperSelect.class);
+        mapper = sqlSession.getMapper(SelectMemberMapper.class);
 
         List<MemberDTO> memberList = mapper.viewMembersByWarnCount();
 
@@ -76,7 +76,7 @@ public class SelectService {
 
         SqlSession sqlSession = getSqlSession();
 
-        mapper = sqlSession.getMapper(MemberMapperSelect.class);
+        mapper = sqlSession.getMapper(SelectMemberMapper.class);
 
         List<MemberDTO> memberList = mapper.viewMembersByQuitDate();
 
