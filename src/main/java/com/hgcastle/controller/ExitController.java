@@ -39,7 +39,10 @@ public class ExitController {
         do {
             System.out.println("해당 Id가 탈퇴할 회원이 맞습니까? ");
             System.out.print("Y/N");
-            String an
+            String answer = sc.nextLine();
+
+            if (answer.equals("Y"))
+                return true;
 
         }
     }
