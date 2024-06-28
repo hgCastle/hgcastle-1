@@ -72,4 +72,19 @@ public class InsertService {
             return false;
         }
     }
+
+    public boolean isRrnDuplicate(String rrn) {
+        SqlSession sqlSession = getSqlSession();
+
+        mapper = sqlSession.getMapper(MemberInsertMapper.class);
+
+        List<MemberDTO> memberList = mapper.selectAllMember();
+        List<String> rrnList = memberList.stream().map(MemberDTO::getRrn).toList();
+
+        if (rrnList.contains(rrn)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

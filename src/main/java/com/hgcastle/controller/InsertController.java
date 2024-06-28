@@ -30,7 +30,7 @@ public class InsertController {
             System.out.println("3. 최소 5, 최대 12 글자로 구성");
             System.out.print("등록할 아이디 : ");
             String id = sc.nextLine();
-            if (id.isEmpty()) {
+            if (id.isBlank()) {
                 insertResult.printErrorMessage("empty", obj + '는');
                 System.out.println();
             } else if (!id.matches("^[a-z0-9]*$")) {
@@ -63,7 +63,7 @@ public class InsertController {
             System.out.println("4. 사용가능한 특수문자와 영문자, 숫자로만 구성");
             System.out.print("등록할 비밀번호 : ");
             String password = sc.nextLine();
-            if (password.isEmpty()) {
+            if (password.isBlank()) {
                 insertResult.printErrorMessage("empty", obj + '는');
                 System.out.println();
             } else if (!password.matches("^[-~!@#$%^&*_+=`|:;\\\"',.?/a-zA-Z0-9]*$")) {
@@ -86,10 +86,7 @@ public class InsertController {
             System.out.println();
             System.out.print("등록할 회원의 본명 : ");
             String name = sc.nextLine();
-            if (name.isEmpty()) {
-                insertResult.printErrorMessage("empty", obj + '은');
-                System.out.println();
-            } else if (name.isBlank()) {
+            if (name.isBlank()) {
                 insertResult.printErrorMessage("empty", obj + '은');
                 System.out.println();
             } else if (!name.matches("^[가-힣]*$")) {
@@ -113,7 +110,7 @@ public class InsertController {
             System.out.println("3. 최소 1, 최대 6 글자로 구성");
             System.out.print("등록할 별명 : ");
             String nickname = sc.nextLine();
-            if (nickname.isEmpty()) {
+            if (nickname.isBlank()) {
                 insertResult.printErrorMessage("empty", obj + '은');
                 System.out.println();
             } else if (!nickname.matches("^[a-zA-Z0-9가-힣]*$")) {
@@ -141,10 +138,7 @@ public class InsertController {
             System.out.println();
             System.out.print("등록할 회원의 취미 (한글로 작성) : ");
             String hobby = sc.nextLine();
-            if (hobby.isEmpty()) {
-                insertResult.printErrorMessage("empty", obj + '는');
-                System.out.println();
-            } else if (hobby.isBlank()) {
+            if (hobby.isBlank()) {
                 insertResult.printErrorMessage("empty", obj + '는');
                 System.out.println();
             } else if (!hobby.matches("^[가-힣]*$")) {
@@ -164,7 +158,7 @@ public class InsertController {
             System.out.println();
             System.out.print("등록할 회원의 휴대폰 번호 8자리('-'없이 '010' 이후 8자리만 작성) : 010");
             String phone = sc.nextLine();
-            if (phone.isEmpty()) {
+            if (phone.isBlank()) {
                 insertResult.printErrorMessage("empty", "휴대폰 번호는");
                 System.out.println();
             } else if (!phone.matches("^[0-9]*$")) {
@@ -191,7 +185,7 @@ public class InsertController {
             System.out.println();
             System.out.print("등록할 회원의 주민등록번호 앞 6자리 : ");
             String frontRrn = sc.nextLine();
-            if (frontRrn.isEmpty()) {
+            if (frontRrn.isBlank()) {
                 insertResult.printErrorMessage("empty", "주민등록번호는");
                 System.out.println();
             } else if (!frontRrn.matches("^[0-9]*$")) {
@@ -217,7 +211,7 @@ public class InsertController {
             System.out.println();
             System.out.print("등록할 회원의 주민등록번호 뒤 7자리 : ");
             String backRrn = sc.nextLine();
-            if (backRrn.isEmpty()) {
+            if (backRrn.isBlank()) {
                 insertResult.printErrorMessage("empty", "주민등록번호는");
                 System.out.println();
             } else if (!backRrn.matches("^[0-9]*$")) {
@@ -232,6 +226,20 @@ public class InsertController {
                 System.out.println();
             } else {
                 return backRrn;
+            }
+        } while (true);
+    }
+
+    public String inputRrn(String frontRrn, String backRrn) {
+        String rrn = frontRrn + '-' + backRrn;
+        String obj = "주민등록번호";
+
+        do {
+            if (insertService.isRrnDuplicate(rrn)) {
+                insertResult.printErrorMessage("duplicate", obj);
+                System.out.println();
+            } else {
+                return rrn;
             }
         } while (true);
     }

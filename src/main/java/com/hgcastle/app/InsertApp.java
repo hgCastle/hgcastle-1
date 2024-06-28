@@ -47,7 +47,7 @@ public class InsertApp {
         String frontRrn = insertController.inputFrontRrn();
         // 주민번호 뒷자리 입력 메소드
         String backRrn = insertController.inputBackRrn();
-        String rrn = frontRrn + '-' + backRrn;
+        String rrn = insertController.inputRrn(frontRrn, backRrn);
 
         System.out.print("\n등록할 회원의 거주지(필수 아님) : ");
         String address = sc.nextLine();
