@@ -2,12 +2,11 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.hgcastle.mapper.InsertMemberMapper">
-
+<mapper namespace="com.hgcastle.mapper.MemberExitMapper">
     <resultMap id="memberResultMap" type="com.hgcastle.dto.MemberDTO">
-        <id property="no" column="member_no"/>
-        <result property="id" column="member_id"/>
+        <id property="id" column="member_id"/>
         <result property="password" column="member_password"/>
+        <result property="no" column="member_no"/>
         <result property="name" column="member_name"/>
         <result property="nickname" column="member_nickname"/>
         <result property="hobby" column="member_hobby"/>
@@ -15,22 +14,17 @@
         <result property="email" column="member_email"/>
         <result property="rrn" column="member_rrn"/>
         <result property="address" column="member_address"/>
-        <result property="entDate" column="member_entDate"/>
+        <result property="enDate" column="member_enDate"/>
         <result property="warnCount" column="member_warnCount"/>
         <result property="banDate" column="member_banDate"/>
         <result property="quitDate" column="member_quitDate"/>
     </resultMap>
 
-    <select id="selectAllMember" resultMap="memberResultMap">
-        select *
-        from tbl_member
-        order by member_no
-    </select>
-
-    <insert id="insertMember" parameterType="com.hgcastle.dto.MemberDTO">
-        insert into tbl_member(
+    <select id="selectMemberId" resultMap="memberResultMap">
+        select
         member_id,
         member_password,
+        member_no,
         member_name,
         member_nickname,
         member_hobby,
@@ -38,18 +32,10 @@
         member_email,
         member_rrn,
         member_address,
-        member_entDate
-        ) values (
-        #{id},
-        #{password},
-        #{name},
-        #{nickname},
-        #{hobby},
-        #{phone},
-        #{email},
-        #{rrn},
-        #{address},
-        #{entDate}
-        )
-    </insert>
+        member_entDate,
+        member_warnCount,
+        member_quitDate
+        from tbl_member
+        where member_id =#{id}
+    </select>
 </mapper>
