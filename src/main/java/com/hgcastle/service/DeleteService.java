@@ -1,20 +1,20 @@
 package com.hgcastle.service;
 
-import com.hgcastle.mapper.MemberMapper;
+import com.hgcastle.mapper.MemberDeleteMapper;
 import org.apache.ibatis.session.SqlSession;
 
 import static com.hgcastle.common.Template.getSqlSession;
 
 public class DeleteService {
 
-    private MemberMapper memberMapper;
+    private MemberDeleteMapper memberDeleteMapper;
 
-    public String deleteMember(String id) {
+    public boolean deleteMember(String id) {
         SqlSession sqlSession = getSqlSession();
 
-        memberMapper = sqlSession.getMapper(MemberMapper.class);
+        memberDeleteMapper = sqlSession.getMapper(MemberDeleteMapper.class);
 
-        int result = memberMapper.deleteMember(id);
+        int result = memberDeleteMapper.deleteMember(id);
 
         if (result > 0){
             sqlSession.commit();

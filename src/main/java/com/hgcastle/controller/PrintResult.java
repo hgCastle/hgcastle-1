@@ -9,6 +9,14 @@ public class PrintResult {
         System.out.println(member);
     }
 
+    public void printSuccessMessage(String delete) {
+
+        String successMessage = "";
+        switch (delete){
+            case "delete" :
+        }
+    }
+
     public void printErrorMessage(String erroCode) {
         String errorMessage = "";
         switch (erroCode){
