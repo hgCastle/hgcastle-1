@@ -1,6 +1,6 @@
 package com.hgcastle.app;
 
-import com.hgcastle.controller.MemberController;
+//import com.hgcastle.controller.MemberController;
 
 import java.util.Scanner;
 
@@ -8,7 +8,7 @@ public class Application {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        MemberController controller = new MemberController();
+//        MemberController controller = new MemberController();
 
         System.out.println("""
                 ██╗  ██╗ ██████╗  ██████╗ █████╗ ███████╗████████╗██╗     ███████╗
@@ -30,7 +30,7 @@ public class Application {
             String choice = sc.nextLine();
             switch (choice) {
                 case "1":
-                    controller.insertMember();
+//                    controller.insertMember();
                     break;
                 case "2":
                     break;
