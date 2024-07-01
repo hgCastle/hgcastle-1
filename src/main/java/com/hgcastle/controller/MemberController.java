@@ -4,7 +4,9 @@ import com.hgcastle.dto.MemberDTO;
 import com.hgcastle.service.MemberService;
 import com.hgcastle.view.MemberResult;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -69,17 +71,13 @@ public class MemberController {
             String id = sc.nextLine();
             if (id.isBlank()) {
                 result.printErrorMessage("essential");
-                System.out.println();
             } else if (!id.matches("^[a-z0-9]*$")) {
                 result.printErrorMessage("wrongFormat");
-                System.out.println();
             } else if (id.length() < 5 || id.length() > 12) {
                 result.printErrorMessage("wrongLength");
-                System.out.println();
             } else {
                 if (service.isIdDuplicate(id)) {
                     result.printErrorMessage("duplicate");
-                    System.out.println();
                 } else {
                     return id;
                 }
@@ -102,13 +100,10 @@ public class MemberController {
             String password = sc.nextLine();
             if (password.isBlank()) {
                 result.printErrorMessage("essential");
-                System.out.println();
             } else if (!password.matches("^[-~!@#$%^&*_+=`|:;\\\"',.?/a-zA-Z0-9]*$")) {
                 result.printErrorMessage("wrongFormat");
-                System.out.println();
             } else if (password.length() < 5 || password.length() > 20) {
                 result.printErrorMessage("wrongLength");
-                System.out.println();
             } else {
                 return password;
             }
@@ -125,10 +120,8 @@ public class MemberController {
             String name = sc.nextLine();
             if (name.isBlank()) {
                 result.printErrorMessage("essential");
-                System.out.println();
             } else if (!name.matches("^[가-힣]*$")) {
                 result.printErrorMessage("wrongFormat");
-                System.out.println();
             } else {
                 return name;
             }
@@ -149,17 +142,13 @@ public class MemberController {
             String nickname = sc.nextLine();
             if (nickname.isBlank()) {
                 result.printErrorMessage("essential");
-                System.out.println();
             } else if (!nickname.matches("^[a-zA-Z0-9가-힣]*$")) {
                 result.printErrorMessage("wrongFormat");
-                System.out.println();
             } else if (nickname.length() > 6) {
                 result.printErrorMessage("wrongLength");
-                System.out.println();
             } else {
                 if (service.isNicknameDuplicate(nickname)) {
                     result.printErrorMessage("duplicate");
-                    System.out.println();
                 } else {
                     return nickname;
                 }
@@ -177,10 +166,8 @@ public class MemberController {
             String hobby = sc.nextLine();
             if (hobby.isBlank()) {
                 result.printErrorMessage("essential");
-                System.out.println();
             } else if (!hobby.matches("^[가-힣]*$")) {
                 result.printErrorMessage("wrongFormat");
-                System.out.println();
             } else {
                 return hobby;
             }
@@ -197,17 +184,13 @@ public class MemberController {
             String phone = sc.nextLine();
             if (phone.isBlank()) {
                 result.printErrorMessage("essential");
-                System.out.println();
             } else if (!phone.matches("^[0-9]*$")) {
                 result.printErrorMessage("wrongFormat");
-                System.out.println();
             } else if (phone.length() != 8) {
                 result.printErrorMessage("wrongLength");
-                System.out.println();
             } else {
                 if (service.isPhoneDuplicate("010" + phone)) {
                     result.printErrorMessage("duplicate");
-                    System.out.println();
                 } else {
                     return phone;
                 }
@@ -225,17 +208,13 @@ public class MemberController {
             String frontRrn = sc.nextLine();
             if (frontRrn.isBlank()) {
                 result.printErrorMessage("essential");
-                System.out.println();
             } else if (!frontRrn.matches("^[0-9]*$")) {
                 result.printErrorMessage("wrongFormat");
-                System.out.println();
             } else if (1 > Integer.parseInt(frontRrn.substring(2, 4)) || Integer.parseInt(frontRrn.substring(2, 4)) > 12
                     || 1 > Integer.parseInt(frontRrn.substring(4)) || Integer.parseInt(frontRrn.substring(4)) > 31) {
                 result.printErrorMessage("nonExistentDate");
-                System.out.println();
             } else if (frontRrn.length() != 6) {
                 result.printErrorMessage("wrongLength");
-                System.out.println();
             } else {
                 return frontRrn;
             }
@@ -252,17 +231,13 @@ public class MemberController {
             String backRrn = sc.nextLine();
             if (backRrn.isBlank()) {
                 result.printErrorMessage("essential");
-                System.out.println();
             } else if (!backRrn.matches("^[0-9]*$")) {
                 result.printErrorMessage("wrongFormat");
-                System.out.println();
             } else if (backRrn.charAt(0) != '1' && backRrn.charAt(0) != '2'
                     && backRrn.charAt(0) != '3' && backRrn.charAt(0) != '4') {
                 result.printErrorMessage("only1234");
-                System.out.println();
             } else if (backRrn.length() != 7) {
                 result.printErrorMessage("wrongLength");
-                System.out.println();
             } else {
                 return backRrn;
             }
@@ -277,7 +252,6 @@ public class MemberController {
             String rrn = frontRrn + '-' + backRrn;
             if (service.isRrnDuplicate(rrn)) {
                 result.printErrorMessage("duplicate");
-                System.out.println();
             } else {
                 return rrn;
             }
@@ -289,7 +263,7 @@ public class MemberController {
         Scanner sc = new Scanner(System.in);
 
         do {
-            System.out.println("이대로 등록을 진행하시겠습니까?");
+            System.out.println("████████████ 이대로 등록을 진행하시겠습니까? ████████████");
             System.out.print("1.예(Y)      2.아니오(N) : ");
             String yesOrNo = sc.nextLine();
             if (yesOrNo.equals("예") || yesOrNo.equals("Y") || yesOrNo.equals("y") || yesOrNo.equals("1")
@@ -302,7 +276,6 @@ public class MemberController {
                 return false;
             } else {
                 result.printErrorMessage("youAreWrong");
-                System.out.println();
             }
         } while (true);
     }
@@ -314,8 +287,29 @@ public class MemberController {
         if (memberList != null) {
             result.printMenuDtoList(memberList);
         } else {
-            result.printErrorMessage("fail");
-            System.out.println();
+            result.printErrorMessage("noApply");
+        }
+    }
+
+    public void selectMemberByWarnCount() {
+
+        List<MemberDTO> warnedMemberList = service.selectMemberByWarnCount();
+
+        if (warnedMemberList.isEmpty()) {
+            result.printErrorMessage("noApply");
+        } else {
+            result.printMenuDtoList(warnedMemberList);
+        }
+    }
+
+    public void selectQuitMember() {
+
+        List<MemberDTO> quitMemberList = service.selectQuitMember();
+
+        if (quitMemberList.isEmpty()) {
+            result.printErrorMessage("noApply");
+        } else {
+            result.printMenuDtoList(quitMemberList);
         }
     }
 
@@ -329,13 +323,11 @@ public class MemberController {
             String id = sc.nextLine();
             if (id.isBlank()) {
                 result.printErrorMessage("essential");
-                System.out.println();
             } else {
                 if (service.isIdDuplicate(id)) {
                     return id;
                 } else {
                     result.printErrorMessage("none");
-                    System.out.println();
                 }
             }
         } while (true);
@@ -349,7 +341,82 @@ public class MemberController {
             result.printMemberDto(member);
         } else {
             result.printErrorMessage("none");
-            System.out.println();
         }
+    }
+
+    public String searchByName() {
+
+        Scanner sc = new Scanner(System.in);
+
+        do {
+            System.out.println();
+            System.out.print("검색할 이름을 입력하세요 : ");
+            String name = sc.nextLine();
+            if (name.isBlank()) {
+                result.printErrorMessage("essential");
+            } else {
+                if (service.isNameDuplicate(name)) {
+                    return name;
+                } else {
+                    result.printErrorMessage("none");
+                }
+            }
+        } while (true);
+    }
+
+    public void selectMemberByName(String name) {
+
+        MemberDTO member = service.selectMemberByName(name);
+
+        if (member != null) {
+            result.printMemberDto(member);
+        } else {
+            result.printErrorMessage("none");
+        }
+    }
+
+    public void updateWithdrawMember() {
+
+        Scanner sc = new Scanner(System.in);
+        Date javaDate = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String date = sdf.format(javaDate);
+
+        do {
+            System.out.println();
+            System.out.println("████████████████████████ 회원 탈퇴 처리하기 █████████████████████████");
+            String id = searchById();
+            selectMemberById(id);
+            if (isItWithdrawMember()) {
+                if (service.updateWithdrawMember(id, date)) {
+                    result.printSuccessMessage("withdraw");
+                } else {
+                    result.printErrorMessage("fail");
+                }
+            } else {
+                return;
+            }
+        } while (true);
+    }
+
+    private boolean isItWithdrawMember() {
+        Scanner sc = new Scanner(System.in);
+
+        do {
+            System.out.println("████████████ 탈퇴를 진행할 회원이 맞습니까? ████████████");
+            System.out.print("1.예(Y)      2.아니오(N) : ");
+            String yesOrNo = sc.nextLine();
+            if (yesOrNo.equals("예") || yesOrNo.equals("Y") || yesOrNo.equals("y") || yesOrNo.equals("1")
+                    || yesOrNo.equals("네") || yesOrNo.equals("ㅇ") || yesOrNo.equals("ㅇㅇ") || yesOrNo.equals("ㄱㄱ")
+                    || yesOrNo.equals("ㄱ") || yesOrNo.equals("응") || yesOrNo.equals("어") || yesOrNo.equals("웅")) {
+                return true;
+            } else if (yesOrNo.equals("아니오") || yesOrNo.equals("N") || yesOrNo.equals("n") || yesOrNo.equals("2")
+                    || yesOrNo.equals("아니요") || yesOrNo.equals("ㄴ") || yesOrNo.equals("ㄴㄴ") || yesOrNo.equals("놉")
+                    || yesOrNo.equals("노") || yesOrNo.equals("시러")) {
+                return false;
+            } else {
+                result.printErrorMessage("youAreWrong");
+            }
+        } while (true);
     }
 }

@@ -24,14 +24,14 @@ public class Application {
             System.out.print("""
                     
                     ████████████████████████ 회원 관리 프로그램 █████████████████████████
-                    ████████████████████ 현재 등록 기능만 이용 가능! █████████████████████
+                    ██████████████████████ made by 하얀,규섭,성민 ██████████████████████
                     1) 회원 등록
                     2) 회원 조회
                     3) 회원 탈퇴처리
                     4) 회원 제재
                     5) 회원 정보 삭제
                     0) 프로그램 종료
-                    사용할 기능 번호를 입력하세요 :\s """);
+                    사용할 기능 번호를 입력하세요 :\s""");
             String choice = sc.nextLine();
             switch (choice) {
                 case "1":
@@ -41,6 +41,7 @@ public class Application {
                     selectSubMenu();
                     break;
                 case "3":
+                    con.updateWithdrawMember();
                     break;
                 case "4":
                     break;
@@ -85,7 +86,7 @@ public class Application {
         System.out.print("\n등록할 회원의 거주지(필수 아님) : ");
         String address = sc.nextLine();
 
-        System.out.println("");
+        System.out.println();
         System.out.println("██████████████████████████ 입력하신 정보 ██████████████████████████");
         System.out.println("아이디 : " + id);
         System.out.println("비밀번호 : " + password);
@@ -133,11 +134,13 @@ public class Application {
                     con.selectMemberById(searchById());
                     break;
                 case "3":
-//                    con.selectMemberByName(searchByName());
+                    con.selectMemberByName(searchByName());
                     break;
                 case "4":
+                    con.selectMemberByWarnCount();
                     break;
                 case "5":
+                    con.selectQuitMember();
                     break;
                 case "0":
                     return;
@@ -147,12 +150,13 @@ public class Application {
 
     private static String searchById() {
 
-        MemberController con = new MemberController();
-        String id = con.searchById();
+        String id = new MemberController().searchById();
         return id;
     }
 
-//    private static String searchByName() {
-//
-//    }
+    private static String searchByName() {
+
+        String name = new MemberController().searchByName();
+        return name;
+    }
 }

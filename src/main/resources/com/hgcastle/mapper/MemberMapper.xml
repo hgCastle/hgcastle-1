@@ -27,10 +27,30 @@
         order by member_no
     </select>
 
+    <select id="selectMemberByWarnCount" resultMap="memberResultMap">
+        select *
+        from tbl_member
+        where member_warnCount > 0
+        order by member_no
+    </select>
+
+    <select id="selectQuitMember" resultMap="memberResultMap">
+        select *
+        from tbl_member
+        where member_quitDate is not null
+        order by member_no
+    </select>
+
     <select id="selectMemberById" resultMap="memberResultMap">
         select *
         from tbl_member
         where member_id = #{id}
+    </select>
+
+    <select id="selectMemberByName" resultMap="memberResultMap">
+        select *
+        from tbl_member
+        where member_name = #{name}
     </select>
 
     <insert id="insertMember" parameterType="com.hgcastle.dto.MemberDTO">
@@ -58,5 +78,10 @@
         #{entDate}
         )
     </insert>
+
+    <update id="updateWithdrawMember" parameterType="com.hgcastle.dto.MemberDTO">
+        update tbl_member
+
+    </update>
 
 </mapper>
