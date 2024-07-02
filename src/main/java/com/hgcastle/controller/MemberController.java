@@ -4,9 +4,8 @@ import com.hgcastle.dto.MemberDTO;
 import com.hgcastle.service.MemberService;
 import com.hgcastle.view.MemberResult;
 
-import java.text.SimpleDateFormat;
+import java.sql.Date;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -264,7 +263,7 @@ public class MemberController {
 
         do {
             System.out.println("████████████ 이대로 등록을 진행하시겠습니까? ████████████");
-            System.out.print("1.예(Y)      2.아니오(N) : ");
+            System.out.print("                1.예(Y)      2.아니오(N) : ");
             String yesOrNo = sc.nextLine();
             if (yesOrNo.equals("예") || yesOrNo.equals("Y") || yesOrNo.equals("y") || yesOrNo.equals("1")
                     || yesOrNo.equals("네") || yesOrNo.equals("ㅇ") || yesOrNo.equals("ㅇㅇ") || yesOrNo.equals("ㄱㄱ")
@@ -377,18 +376,15 @@ public class MemberController {
 
     public void updateWithdrawMember() {
 
-        Scanner sc = new Scanner(System.in);
-        Date javaDate = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String date = sdf.format(javaDate);
+        Date quitDate = new java.sql.Date(new java.util.Date().getTime());
 
         do {
             System.out.println();
             System.out.println("████████████████████████ 회원 탈퇴 처리하기 █████████████████████████");
             String id = searchById();
             selectMemberById(id);
-            if (isItWithdrawMember()) {
-                if (service.updateWithdrawMember(id, date)) {
+            if (isItWithdrawMember(id)) {
+                if (service.updateWithdrawMember(id, quitDate)) {
                     result.printSuccessMessage("withdraw");
                 } else {
                     result.printErrorMessage("fail");
@@ -399,12 +395,12 @@ public class MemberController {
         } while (true);
     }
 
-    private boolean isItWithdrawMember() {
+    private boolean isItWithdrawMember(String id) {
         Scanner sc = new Scanner(System.in);
-
         do {
-            System.out.println("████████████ 탈퇴를 진행할 회원이 맞습니까? ████████████");
-            System.out.print("1.예(Y)      2.아니오(N) : ");
+            service.selectMemberById(id);
+            System.out.println("\n██████████ 위 회원의 탈퇴를 진행하시겠습니까? ██████████");
+            System.out.print("              1.예(Y)      2.아니오(N) : ");
             String yesOrNo = sc.nextLine();
             if (yesOrNo.equals("예") || yesOrNo.equals("Y") || yesOrNo.equals("y") || yesOrNo.equals("1")
                     || yesOrNo.equals("네") || yesOrNo.equals("ㅇ") || yesOrNo.equals("ㅇㅇ") || yesOrNo.equals("ㄱㄱ")

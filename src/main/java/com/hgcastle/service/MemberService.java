@@ -4,6 +4,7 @@ import com.hgcastle.dto.MemberDTO;
 import com.hgcastle.mapper.MemberMapper;
 import org.apache.ibatis.session.SqlSession;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -185,13 +186,13 @@ public class MemberService {
         return result > 0 ? true : false;
     }
 
-    public boolean updateWithdrawMember(String id, String date) {
+    public boolean updateWithdrawMember(String id, Date quitDate) {
 
         SqlSession sqlSession = getSqlSession();
 
         mapper = sqlSession.getMapper(MemberMapper.class);
 
-        int result = mapper.updateWithdrawMember(id, date);
+        int result = mapper.updateWithdrawMember(id, quitDate);
         if (result > 0) {
             sqlSession.commit();
         } else {

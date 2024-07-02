@@ -2,6 +2,7 @@ package com.hgcastle.mapper;
 
 import com.hgcastle.dto.MemberDTO;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface MemberMapper {
@@ -12,5 +13,5 @@ public interface MemberMapper {
     MemberDTO selectMemberById(String id);
     MemberDTO selectMemberByName(String name);
     int insertMember(MemberDTO newMember);
-    int updateWithdrawMember(String id, String date);
+    int updateWithdrawMember(String id, Date quitDate);
 }

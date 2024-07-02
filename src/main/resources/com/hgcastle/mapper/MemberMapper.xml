@@ -81,7 +81,9 @@
 
     <update id="updateWithdrawMember" parameterType="com.hgcastle.dto.MemberDTO">
         update tbl_member
-
+        set
+        member_quitDate = #{quitDate}
+        where member_id = #{id}
     </update>
 
 </mapper>
