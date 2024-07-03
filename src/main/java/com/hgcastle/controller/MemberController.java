@@ -53,6 +53,8 @@ public class MemberController {
             } else {
                 result.printErrorMessage("fail");
             }
+        } else {
+            result.printErrorMessage("toBegin");
         }
     }
 
@@ -66,9 +68,12 @@ public class MemberController {
             System.out.println("1. 공백 포함 불가");
             System.out.println("2. 영어소문자와 숫자로만 구성");
             System.out.println("3. 최소 5, 최대 12 글자로 구성");
+            System.out.println("* 첫 화면으로 돌아가시려면 숫자 '0'을 입력하세요.");
             System.out.print("등록할 아이디 : ");
             String id = sc.nextLine();
-            if (id.isBlank()) {
+            if (id.equals("0")) {
+                return id;
+            } else if (id.isBlank()) {
                 result.printErrorMessage("essential");
             } else if (!id.matches("^[a-z0-9]*$")) {
                 result.printErrorMessage("wrongFormat");
@@ -95,9 +100,12 @@ public class MemberController {
             System.out.println("2. 최소 5, 최대 20 글자로 구성");
             System.out.println("3. 사용가능한 특수문자 : ~ ! @ # $ % ^ & * _ - + = ` | \\ : ; \" ' , . ? /");
             System.out.println("4. 사용가능한 특수문자와 영문자, 숫자로만 구성");
+            System.out.println("* 첫 화면으로 돌아가시려면 숫자 '0'을 입력하세요.");
             System.out.print("등록할 비밀번호 : ");
             String password = sc.nextLine();
-            if (password.isBlank()) {
+            if (password.equals("0")) {
+                return password;
+            } else if (password.isBlank()) {
                 result.printErrorMessage("essential");
             } else if (!password.matches("^[-~!@#$%^&*_+=`|:;\\\"',.?/a-zA-Z0-9]*$")) {
                 result.printErrorMessage("wrongFormat");
@@ -115,9 +123,12 @@ public class MemberController {
 
         do {
             System.out.println();
+            System.out.println("* 첫 화면으로 돌아가시려면 숫자 '0'을 입력하세요.");
             System.out.print("등록할 회원의 본명 : ");
             String name = sc.nextLine();
-            if (name.isBlank()) {
+            if (name.equals("0")) {
+                return name;
+            } else if (name.isBlank()) {
                 result.printErrorMessage("essential");
             } else if (!name.matches("^[가-힣]*$")) {
                 result.printErrorMessage("wrongFormat");
@@ -137,9 +148,12 @@ public class MemberController {
             System.out.println("1. 공백 포함 불가");
             System.out.println("2. 한글과 영문자, 숫자로만 구성");
             System.out.println("3. 최소 1, 최대 6 글자로 구성");
+            System.out.println("* 첫 화면으로 돌아가시려면 숫자 '0'을 입력하세요.");
             System.out.print("등록할 별명 : ");
             String nickname = sc.nextLine();
-            if (nickname.isBlank()) {
+            if (nickname.equals("0")) {
+                return nickname;
+            } else if (nickname.isBlank()) {
                 result.printErrorMessage("essential");
             } else if (!nickname.matches("^[a-zA-Z0-9가-힣]*$")) {
                 result.printErrorMessage("wrongFormat");
@@ -161,9 +175,12 @@ public class MemberController {
 
         do {
             System.out.println();
+            System.out.println("* 첫 화면으로 돌아가시려면 숫자 '0'을 입력하세요.");
             System.out.print("등록할 회원의 취미 (한글로만 작성) : ");
             String hobby = sc.nextLine();
-            if (hobby.isBlank()) {
+            if (hobby.equals("0")) {
+                return hobby;
+            } else if (hobby.isBlank()) {
                 result.printErrorMessage("essential");
             } else if (!hobby.matches("^[가-힣]*$")) {
                 result.printErrorMessage("wrongFormat");
@@ -179,9 +196,12 @@ public class MemberController {
 
         do {
             System.out.println();
+            System.out.println("* 첫 화면으로 돌아가시려면 숫자 '0'을 입력하세요.");
             System.out.print("등록할 회원의 휴대폰 번호 8자리('-'없이 '010' 이후 8자리만 작성) : 010");
             String phone = sc.nextLine();
-            if (phone.isBlank()) {
+            if (phone.equals("0")) {
+                return phone;
+            } else if (phone.isBlank()) {
                 result.printErrorMessage("essential");
             } else if (!phone.matches("^[0-9]*$")) {
                 result.printErrorMessage("wrongFormat");
@@ -203,17 +223,20 @@ public class MemberController {
 
         do {
             System.out.println();
+            System.out.println("* 첫 화면으로 돌아가시려면 숫자 '0'을 입력하세요.");
             System.out.print("등록할 회원의 주민등록번호 앞 6자리 : ");
             String frontRrn = sc.nextLine();
-            if (frontRrn.isBlank()) {
+            if (frontRrn.equals("0")) {
+                return frontRrn;
+            } else if (frontRrn.isBlank()) {
                 result.printErrorMessage("essential");
             } else if (!frontRrn.matches("^[0-9]*$")) {
                 result.printErrorMessage("wrongFormat");
+            } else if (frontRrn.length() != 6) {
+                result.printErrorMessage("wrongLength");
             } else if (1 > Integer.parseInt(frontRrn.substring(2, 4)) || Integer.parseInt(frontRrn.substring(2, 4)) > 12
                     || 1 > Integer.parseInt(frontRrn.substring(4)) || Integer.parseInt(frontRrn.substring(4)) > 31) {
                 result.printErrorMessage("nonExistentDate");
-            } else if (frontRrn.length() != 6) {
-                result.printErrorMessage("wrongLength");
             } else {
                 return frontRrn;
             }
@@ -226,9 +249,12 @@ public class MemberController {
 
         do {
             System.out.println();
+            System.out.println("* 첫 화면으로 돌아가시려면 숫자 '0'을 입력하세요.");
             System.out.print("등록할 회원의 주민등록번호 뒤 7자리 : ");
             String backRrn = sc.nextLine();
-            if (backRrn.isBlank()) {
+            if (backRrn.equals("0")) {
+                return backRrn;
+            } else if (backRrn.isBlank()) {
                 result.printErrorMessage("essential");
             } else if (!backRrn.matches("^[0-9]*$")) {
                 result.printErrorMessage("wrongFormat");
@@ -247,7 +273,13 @@ public class MemberController {
 
         do {
             String frontRrn = inputFrontRrn();
+            if (frontRrn.equals("0")) {
+                return null;
+            }
             String backRrn = inputBackRrn();
+            if (backRrn.equals("0")) {
+                return null;
+            }
             String rrn = frontRrn + '-' + backRrn;
             if (service.isRrnDuplicate(rrn)) {
                 result.printErrorMessage("duplicate");
@@ -318,9 +350,12 @@ public class MemberController {
 
         do {
             System.out.println();
+            System.out.println("* 돌아가시려면 숫자 '0'을 입력하세요.");
             System.out.print("검색할 아이디를 입력하세요 : ");
             String id = sc.nextLine();
-            if (id.isBlank()) {
+            if (id.equals("0")) {
+                return id;
+            } else if (id.isBlank()) {
                 result.printErrorMessage("essential");
             } else {
                 if (service.isIdDuplicate(id)) {
@@ -336,7 +371,9 @@ public class MemberController {
 
         MemberDTO member = service.selectMemberById(id);
 
-        if (member != null) {
+        if (id.equals("0")) {
+            return;
+        } else if (member != null) {
             result.printMemberDto(member);
         } else {
             result.printErrorMessage("none");
@@ -349,9 +386,12 @@ public class MemberController {
 
         do {
             System.out.println();
+            System.out.println("* 돌아가시려면 숫자 '0'을 입력하세요.");
             System.out.print("검색할 이름을 입력하세요 : ");
             String name = sc.nextLine();
-            if (name.isBlank()) {
+            if (name.equals("0")) {
+                return name;
+            } else if (name.isBlank()) {
                 result.printErrorMessage("essential");
             } else {
                 if (service.isNameDuplicate(name)) {
@@ -367,7 +407,9 @@ public class MemberController {
 
         MemberDTO member = service.selectMemberByName(name);
 
-        if (member != null) {
+        if (name.equals("0")) {
+            return;
+        } else if (member != null) {
             result.printMemberDto(member);
         } else {
             result.printErrorMessage("none");
@@ -383,14 +425,18 @@ public class MemberController {
             System.out.println("████████████████████████ 회원 탈퇴 처리하기 █████████████████████████");
             String id = searchById();
             selectMemberById(id);
-            if (isItWithdrawMember(id)) {
-                if (service.updateWithdrawMember(id, quitDate)) {
-                    result.printSuccessMessage("withdraw");
-                } else {
-                    result.printErrorMessage("fail");
-                }
-            } else {
+            if (id.equals("0")) {
                 return;
+            } else {
+                if (isItWithdrawMember(id)) {
+                    if (service.updateWithdrawMember(id, quitDate)) {
+                        result.printSuccessMessage("withdraw");
+                    } else {
+                        result.printErrorMessage("fail");
+                    }
+                } else {
+                    return;
+                }
             }
         } while (true);
     }

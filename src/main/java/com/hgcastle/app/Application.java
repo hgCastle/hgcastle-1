@@ -22,7 +22,7 @@ public class Application {
                 ╚═╝  ╚═╝ ╚═════╝  ╚═════╝╚═╝  ╚═╝╚══════╝   ╚═╝   ╚══════╝╚══════╝""");
         do {
             System.out.print("""
-                    
+                                        
                     ████████████████████████ 회원 관리 프로그램 █████████████████████████
                     ██████████████████████ made by 하얀,규섭,성민 ██████████████████████
                     1) 회원 등록
@@ -64,27 +64,53 @@ public class Application {
 
         // 아이디 입력 메소드
         String id = con.inputID();
+        if (id.equals("0")) {
+            return null;
+        }
 
         // 비밀번호 입력 메소드
         String password = con.inputPassword();
+        if (password.equals("0")) {
+            return null;
+        }
 
         // 이름 입력 메소드
         String name = con.inputName();
+        if (name.equals("0")) {
+            return null;
+        }
 
         // 닉네임 입력 메소드
         String nickname = con.inputNickname();
+        if (nickname.equals("0")) {
+            return null;
+        }
 
         // 취미 입력 메소드
         String hobby = con.inputHobby();
+        if (hobby.equals("0")) {
+            return null;
+        }
 
         // 휴대전화번호 입력 메소드
         String phone = con.inputPhone();
+        if (phone.equals("0")) {
+            return null;
+        }
 
         // 주민등록번호 입력 메소드
         String rrn = con.inputRrn();
+        if (rrn == null) {
+            return null;
+        }
 
-        System.out.print("\n등록할 회원의 거주지(필수 아님) : ");
+        System.out.println("\n* 돌아가시려면 숫자 '0'을 입력하세요.");
+        System.out.print("등록할 회원의 거주지(필수 아님) : ");
         String address = sc.nextLine();
+        if (address.equals("0")) {
+            return null;
+        }
+
 
         System.out.println();
         System.out.println("██████████████████████████ 입력하신 정보 ██████████████████████████");
@@ -149,14 +175,10 @@ public class Application {
     }
 
     private static String searchById() {
-
-        String id = new MemberController().searchById();
-        return id;
+        return new MemberController().searchById();
     }
 
     private static String searchByName() {
-
-        String name = new MemberController().searchByName();
-        return name;
+        return new MemberController().searchByName();
     }
 }

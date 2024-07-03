@@ -27,7 +27,7 @@ public class MemberResult {
                 System.out.println("██████████████████████████████████");
                 break;
 
-            case "withdraw" :
+            case "withdraw":
                 System.out.println();
                 System.out.println("█████████████████████████████");
                 System.out.println("███ 탈퇴처리가 완료되었습니다 ███");
@@ -39,6 +39,13 @@ public class MemberResult {
     public void printErrorMessage(String errorCode) {
 
         switch (errorCode) {
+
+            case "toBegin":
+                System.out.println("");
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                System.out.println("!!! 첫 화면으로 돌아갑니다 !!!");
+                System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                break;
 
             case "fail":
                 System.out.println();
