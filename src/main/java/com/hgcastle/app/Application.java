@@ -48,7 +48,21 @@ public class Application {
                 case "5":
                     break;
                 case "0":
+                    System.out.println();
+                    System.err.println("""
+                 ██████╗  ██████╗  ██████╗ ██████╗ ██████╗ ██╗   ██╗███████╗
+                ██╔════╝ ██╔═══██╗██╔═══██╗██╔══██╗██╔══██╗╚██╗ ██╔╝██╔════╝
+                ██║  ███╗██║   ██║██║   ██║██║  ██║██████╔╝ ╚████╔╝ █████╗
+                ██║   ██║██║   ██║██║   ██║██║  ██║██╔══██╗  ╚██╔╝  ██╔══╝
+                ╚██████╔╝╚██████╔╝╚██████╔╝██████╔╝██████╔╝   ██║   ███████╗
+                 ╚═════╝  ╚═════╝  ╚═════╝ ╚═════╝ ╚═════╝    ╚═╝   ╚══════╝
+                █████████████████████ 프로그램을 종료합니다 ████████████████████""");
                     return;
+                default:
+                    System.out.println();
+                    System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!");
+                    System.out.println("!!! 잘못 입력하셨습니다 !!!");
+                    System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!");
             }
         } while (true);
     }
@@ -170,6 +184,11 @@ public class Application {
                     break;
                 case "0":
                     return;
+                default:
+                    System.out.println();
+                    System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!");
+                    System.out.println("!!! 잘못 입력하셨습니다 !!!");
+                    System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!");
             }
         } while (true);
     }
